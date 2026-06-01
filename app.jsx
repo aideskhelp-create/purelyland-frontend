@@ -42,6 +42,24 @@ function Landing({ onLaunch }) {
 
   const sources = ["LandWatch","Zillow","Realtor.com","Craigslist","Facebook Marketplace","FSBO.com","Auction.com","HUD / Gov","RealtyTrac","County/Probate"];
 
+  const plans = [
+    {
+      name: "Free", price: "$0", period: "/mo", color: "#4a6a4a",
+      features: ["3 searches/day", "25 mile radius", "5 sources only", "Basic filters"],
+      cta: "Start Free", link: null, highlight: false,
+    },
+    {
+      name: "Pro", price: "$19", period: "/mo", color: "#7ac040",
+      features: ["Unlimited searches", "500 mile radius", "All 10 sources", "AI chat advisor", "Save searches", "Email alerts"],
+      cta: "Get Pro", link: "https://buy.stripe.com/eVq9AU4kph0FcBl5lj77O00", highlight: true,
+    },
+    {
+      name: "Investor", price: "$49", period: "/mo", color: "#a0d060",
+      features: ["Everything in Pro", "Bulk CSV export", "Deal scoring AI", "Portfolio tracker", "API access", "Priority support"],
+      cta: "Get Investor", link: "https://buy.stripe.com/cNi28sg377q5eJt3db77O01", highlight: false,
+    },
+  ];
+
   return (
     <div style={{ minHeight:"100vh", background:"#080c08", fontFamily:"'DM Sans',sans-serif", color:"#c8dcc8", overflowX:"hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
@@ -166,6 +184,52 @@ function Landing({ onLaunch }) {
             style={{ padding:"18px 48px", background:"linear-gradient(135deg,#5a9a2a,#3a7a1a)", border:"none", borderRadius:10, color:"#e0f8c0", fontWeight:900, fontSize:17, cursor:"pointer", boxShadow:"0 8px 40px #3a7a1a44", letterSpacing:".02em" }}>
             🚀 Launch PurelyLand AI
           </button>
+        </div>
+
+        {/* Pricing */}
+        <div style={{ maxWidth:960, margin:"0 auto 80px", padding:"0 20px" }}>
+          <div style={{ textAlign:"center", marginBottom:48 }}>
+            <div style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,4vw,44px)", fontWeight:900, color:"#e8f4e0", marginBottom:12 }}>
+              Simple, honest pricing.
+            </div>
+            <div style={{ fontSize:14, color:"#5a7a5a" }}>Start free. Upgrade when you're ready.</div>
+          </div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:20 }}>
+            {plans.map((plan,i) => (
+              <div key={i} style={{ background: plan.highlight ? "linear-gradient(135deg,#1a3a0a,#0f2a08)" : "#0f180f", border:`2px solid ${plan.highlight ? "#5a9a2a" : "#1e3a1e"}`, borderRadius:16, padding:"28px 24px", position:"relative", transition:"all .2s" }}
+                onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 12px 40px #0008";}}
+                onMouseLeave={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="none";}}>
+                {plan.highlight && (
+                  <div style={{ position:"absolute", top:-12, left:"50%", transform:"translateX(-50%)", background:"linear-gradient(135deg,#5a9a2a,#3a7a1a)", borderRadius:20, padding:"4px 16px", fontSize:11, fontWeight:800, color:"#e0f8c0", whiteSpace:"nowrap" }}>
+                    MOST POPULAR
+                  </div>
+                )}
+                <div style={{ fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:900, color:plan.color, marginBottom:8 }}>{plan.name}</div>
+                <div style={{ display:"flex", alignItems:"baseline", gap:4, marginBottom:20 }}>
+                  <span style={{ fontFamily:"'Playfair Display',serif", fontSize:42, fontWeight:900, color:"#e8f4e0" }}>{plan.price}</span>
+                  <span style={{ fontSize:14, color:"#5a7a5a" }}>{plan.period}</span>
+                </div>
+                <div style={{ borderTop:"1px solid #1e3a1e", paddingTop:16, marginBottom:24 }}>
+                  {plan.features.map((f,j) => (
+                    <div key={j} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10, fontSize:13, color:"#8aaa8a" }}>
+                      <span style={{ color:plan.color, fontSize:14 }}>✓</span> {f}
+                    </div>
+                  ))}
+                </div>
+                {plan.link ? (
+                  <a href={plan.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration:"none", display:"block" }}>
+                    <button style={{ width:"100%", padding:"13px", background:plan.highlight?"linear-gradient(135deg,#5a9a2a,#3a7a1a)":"transparent", border:`1px solid ${plan.color}`, borderRadius:8, color:plan.highlight?"#e0f8c0":plan.color, fontWeight:800, fontSize:14, cursor:"pointer", letterSpacing:".02em" }}>
+                      {plan.cta} →
+                    </button>
+                  </a>
+                ) : (
+                  <button onClick={onLaunch} style={{ width:"100%", padding:"13px", background:"transparent", border:"1px solid #2a4a2a", borderRadius:8, color:"#4a6a4a", fontWeight:800, fontSize:14, cursor:"pointer" }}>
+                    {plan.cta} →
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Footer */}

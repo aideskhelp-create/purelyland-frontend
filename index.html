@@ -7,23 +7,19 @@
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@200;300;400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 </head>
 <body style="margin:0;padding:0;background:#0d110d">
 <div id="root"></div>
-<script type="text/babel">
-function App() {
-  return (
-    <div style={{minHeight:"100vh",background:"#0d110d",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'DM Sans',sans-serif"}}>
-      <div style={{textAlign:"center",color:"#e8f0e8"}}>
-        <div style={{fontFamily:"'Playfair Display',serif",fontSize:48,fontWeight:900,color:"#a0d060"}}>PURELY</div>
-        <div style={{fontFamily:"'Playfair Display',serif",fontSize:48,fontWeight:700,color:"#e8f0e8"}}>LAND</div>
-        <div style={{color:"#7ac040",fontSize:16,marginTop:8}}>AI Land Scout — Loading...</div>
-      </div>
-    </div>
-  );
-}
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+<script type="text/babel" data-type="module" src="./app.jsx"></script>
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    if (!document.querySelector('#root').children.length) {
+      location.reload();
+    }
+  }, 5000);
+});
 </script>
 </body>
 </html>

@@ -74,10 +74,37 @@ function Landing({ onLaunch }) {
 
         {/* Nav */}
         <nav style={{ padding:"20px 32px", display:"flex", justifyContent:"space-between", alignItems:"center", borderBottom:"1px solid #ffffff08" }}>
-          <div style={{ display:"flex", alignItems:"baseline", gap:6 }}>
-            <span style={{ fontFamily:"'Playfair Display',serif", fontSize:20, fontWeight:900, color:"#a0d060" }}>PURELY</span>
-            <span style={{ fontFamily:"'Playfair Display',serif", fontSize:20, fontWeight:700, color:"#e8f0e8" }}>LAND</span>
-            <span style={{ fontSize:11, color:"#4a7a4a", marginLeft:4, background:"#1a3a1a", padding:"2px 8px", borderRadius:20, border:"1px solid #2a5a2a" }}>AI</span>
+          <div style={{ display:"flex", alignItems:"center" }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="220" height="72">
+              <defs>
+                <linearGradient id="c1a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#c8f070"/><stop offset="100%" stopColor="#4a8a1a"/></linearGradient>
+                <linearGradient id="c1b" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#8B5E3C"/><stop offset="50%" stopColor="#d4a847"/><stop offset="100%" stopColor="#6db33f"/></linearGradient>
+                <linearGradient id="c1sun" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#ffe066"/><stop offset="100%" stopColor="#f5a623"/></linearGradient>
+                <radialGradient id="c1bg" cx="50%" cy="50%"><stop offset="0%" stopColor="#1a3a0a"/><stop offset="100%" stopColor="#0a1508"/></radialGradient>
+                <filter id="c1g"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect width="480" height="160" rx="20" fill="url(#c1bg)"/>
+              <rect width="480" height="160" rx="20" fill="none" stroke="#2a5a0a" strokeWidth="1.5"/>
+              <rect x="40" y="0" width="400" height="3" rx="1.5" fill="url(#c1a)" opacity="0.4"/>
+              <circle cx="240" cy="32" r="14" fill="url(#c1sun)" filter="url(#c1g)" opacity="0.9"/>
+              <circle cx="240" cy="32" r="8" fill="#fff8cc"/>
+              <line x1="240" y1="12" x2="240" y2="8" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="257" y1="18" x2="260" y2="15" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="223" y1="18" x2="220" y2="15" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="263" y1="32" x2="267" y2="32" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="217" y1="32" x2="213" y2="32" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+              <text x="240" y="88" fontFamily="'Cinzel', serif" fontSize="34" fontWeight="400" fill="url(#c1a)" filter="url(#c1g)" textAnchor="middle" letterSpacing="14">PURELY</text>
+              <text x="240" y="118" fontFamily="'Cinzel', serif" fontSize="42" fontWeight="900" fill="#f0ead8" textAnchor="middle" letterSpacing="18">LAND</text>
+              <rect x="398" y="14" width="58" height="26" rx="13" fill="#0a2206" stroke="#5aaa1a" strokeWidth="1.5"/>
+              <text x="427" y="32" fontFamily="'Cinzel', serif" fontSize="13" fontWeight="700" fill="#90d050" textAnchor="middle" letterSpacing="2" filter="url(#c1g)">AI</text>
+              <circle cx="400" cy="27" r="3" fill="#5aaa1a" opacity="0.6" filter="url(#c1g)"/>
+              <rect x="40" y="157" width="400" height="3" rx="1.5" fill="url(#c1b)" opacity="0.4"/>
+              <text x="240" y="142" fontFamily="'Raleway', sans-serif" fontSize="9" fontWeight="300" fill="url(#c1b)" textAnchor="middle" letterSpacing="5">Land. Lots. Intelligence.</text>
+              <circle cx="24" cy="24" r="3" fill="#2a5a0a" opacity="0.6"/>
+              <circle cx="456" cy="24" r="3" fill="#2a5a0a" opacity="0.6"/>
+              <circle cx="24" cy="136" r="3" fill="#2a5a0a" opacity="0.6"/>
+              <circle cx="456" cy="136" r="3" fill="#2a5a0a" opacity="0.6"/>
+            </svg>
           </div>
           <button onClick={onLaunch}
             style={{ padding:"8px 18px", background:"transparent", border:"1px solid #3a6a2a", borderRadius:20, color:"#90c060", fontSize:13, fontWeight:600, cursor:"pointer" }}>
@@ -447,15 +474,35 @@ function PurelyLandApp({ onBack }) {
 
   return (
     <div style={{minHeight:"100vh",background:"#0d110d",fontFamily:"'DM Sans',sans-serif",color:"#c8dcc8"}}>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@200;300;400&family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
       <div style={{borderBottom:"1px solid #1a2a1a",padding:"13px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,background:"#0d110d",zIndex:50}}>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
           <button onClick={onBack} style={{background:"none",border:"1px solid #1e3a1e",borderRadius:6,color:"#4a6a4a",fontSize:12,cursor:"pointer",padding:"4px 10px"}}>← Home</button>
-          <div style={{display:"flex",alignItems:"baseline",gap:5}}>
-            <span style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:900,color:"#a0d060"}}>PURELY</span>
-            <span style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"#e8f0e8"}}>LAND</span>
-            <span style={{fontSize:10,color:"#3a5a3a",marginLeft:3,letterSpacing:".1em"}}>AI</span>
-          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="140" height="46">
+            <defs>
+              <linearGradient id="h1a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#c8f070"/><stop offset="100%" stopColor="#4a8a1a"/></linearGradient>
+              <linearGradient id="h1b" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#8B5E3C"/><stop offset="50%" stopColor="#d4a847"/><stop offset="100%" stopColor="#6db33f"/></linearGradient>
+              <linearGradient id="h1sun" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#ffe066"/><stop offset="100%" stopColor="#f5a623"/></linearGradient>
+              <radialGradient id="h1bg" cx="50%" cy="50%"><stop offset="0%" stopColor="#1a3a0a"/><stop offset="100%" stopColor="#0a1508"/></radialGradient>
+              <filter id="h1g"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <rect width="480" height="160" rx="20" fill="url(#h1bg)"/>
+            <rect width="480" height="160" rx="20" fill="none" stroke="#2a5a0a" strokeWidth="1.5"/>
+            <rect x="40" y="0" width="400" height="3" rx="1.5" fill="url(#h1a)" opacity="0.4"/>
+            <circle cx="240" cy="32" r="14" fill="url(#h1sun)" filter="url(#h1g)" opacity="0.9"/>
+            <circle cx="240" cy="32" r="8" fill="#fff8cc"/>
+            <line x1="240" y1="12" x2="240" y2="8" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="257" y1="18" x2="260" y2="15" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="223" y1="18" x2="220" y2="15" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="263" y1="32" x2="267" y2="32" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="217" y1="32" x2="213" y2="32" stroke="#f5a623" strokeWidth="2" strokeLinecap="round"/>
+            <text x="240" y="88" fontFamily="'Cinzel', serif" fontSize="34" fontWeight="400" fill="url(#h1a)" filter="url(#h1g)" textAnchor="middle" letterSpacing="14">PURELY</text>
+            <text x="240" y="118" fontFamily="'Cinzel', serif" fontSize="42" fontWeight="900" fill="#f0ead8" textAnchor="middle" letterSpacing="18">LAND</text>
+            <rect x="398" y="14" width="58" height="26" rx="13" fill="#0a2206" stroke="#5aaa1a" strokeWidth="1.5"/>
+            <text x="427" y="32" fontFamily="'Cinzel', serif" fontSize="13" fontWeight="700" fill="#90d050" textAnchor="middle" letterSpacing="2" filter="url(#h1g)">AI</text>
+            <rect x="40" y="157" width="400" height="3" rx="1.5" fill="url(#h1b)" opacity="0.4"/>
+            <text x="240" y="142" fontFamily="'Raleway', sans-serif" fontSize="9" fontWeight="300" fill="url(#h1b)" textAnchor="middle" letterSpacing="5">Land. Lots. Intelligence.</text>
+          </svg>
         </div>
         {phase==="done"&&<div style={{fontSize:11,color:"#4a6a4a"}}>{filtered.length}/{allListings.length} listings · {zip} · {radius}mi{aiListings.length>0&&<span style={{color:"#5aaa2a",marginLeft:6}}>+{aiListings.length} live</span>}</div>}
       </div>

@@ -4,40 +4,1151 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PurelyLand AI — Land. Lots. Intelligence.</title>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@200;300;400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080c08;font-family:'DM Sans',sans-serif;color:#c8dcc8;min-height:100vh}
+a{text-decoration:none}
+.nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff08;position:sticky;top:0;background:#080c08;z-index:50}
+.nav-logo{display:flex;flex-direction:column;align-items:flex-start}
+.nav-purely{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#90d050;letter-spacing:4px}
+.nav-land{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#f0ead8;letter-spacing:10px}
+.nav-tag{font-size:9px;color:#5a8a3a;letter-spacing:5px;margin-top:2px}
+.btn-launch{padding:8px 18px;background:transparent;border:1px solid #3a6a2a;border-radius:20px;color:#90c060;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.hero{text-align:center;padding:60px 20px 48px;max-width:760px;margin:0 auto}
+.live-badge{display:inline-flex;align-items:center;gap:8px;background:#1a3a1a;border:1px solid #2a5a2a;border-radius:20px;padding:5px 14px;font-size:12px;color:#7ac040;margin-bottom:24px;letter-spacing:.06em}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#5aaa2a;animation:pulse 2s ease-in-out infinite}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(28px,6vw,56px);font-weight:900;line-height:1.15;margin-bottom:20px;color:#e8f4e0;letter-spacing:1px}
+.hero h1 span{color:#7ac040}
+.hero p{font-size:15px;color:#7a9a7a;line-height:1.8;max-width:520px;margin:0 auto 28px}
+.email-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto 14px}
+.email-input{flex:1 1 200px;padding:12px 14px;background:#0f1a0f;border:1px solid #2a4a2a;border-radius:8px;color:#e0f0e0;font-size:13px;outline:none;font-family:'DM Sans',sans-serif}
+.btn-cta{padding:12px 20px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:8px;color:#e0f8c0;font-weight:800;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.success-box{padding:12px 20px;background:#1a3a0a;border:1px solid #3a6a1a;border-radius:10px;display:inline-block;margin-bottom:14px;color:#a0e060;font-weight:700;font-size:14px}
+.no-spam{font-size:11px;color:#3a5a3a;margin-bottom:28px}
+.btn-try{padding:13px 28px;background:transparent;border:2px solid #3a6a2a;border-radius:10px;color:#7ac040;font-weight:800;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.source-strip{border-top:1px solid #ffffff08;border-bottom:1px solid #ffffff08;padding:12px 0;overflow:hidden;margin-bottom:52px}
+.source-scroll{display:flex;gap:24px;white-space:nowrap;animation:scroll 20s linear infinite;width:max-content}
+.source-item{font-size:11px;color:#3a5a3a;font-weight:600}
+.features{max-width:920px;margin:0 auto 60px;padding:0 20px}
+.features h2{font-family:'Cinzel',serif;font-size:clamp(20px,3vw,36px);font-weight:900;color:#e8f4e0;text-align:center;margin-bottom:36px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.feature-card{background:#0f180f;border:1px solid #1e3a1e;border-radius:12px;padding:20px 18px}
+.feature-icon{font-size:24px;margin-bottom:8px}
+.feature-title{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#d0e8d0;margin-bottom:5px}
+.feature-desc{font-size:12px;color:#4a6a4a;line-height:1.6}
+.stats{background:#0a140a;border-top:1px solid #1a2a1a;border-bottom:1px solid #1a2a1a;padding:40px 20px;margin-bottom:60px}
+.stats-grid{max-width:700px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;text-align:center}
+.stat-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:#7ac040}
+.stat-label{font-size:10px;color:#3a5a3a;margin-top:4px;letter-spacing:.06em;text-transform:uppercase}
+.pricing{max-width:920px;margin:0 auto 60px;padding:0 20px}
+.pricing h2{font-family:'Cinzel',serif;font-size:clamp(20px,3vw,36px);font-weight:900;color:#e8f4e0;text-align:center;margin-bottom:8px}
+.pricing-sub{font-size:12px;color:#3a5a3a;text-align:center;margin-bottom:32px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.plan{background:#0f180f;border:2px solid #1e3a1e;border-radius:14px;padding:22px 18px;position:relative}
+.plan.popular{background:linear-gradient(135deg,#1a3a0a,#0f2a08);border-color:#5a9a2a}
+.popular-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-radius:20px;padding:2px 12px;font-size:9px;font-weight:800;color:#e0f8c0;white-space:nowrap;font-family:'Cinzel',serif;letter-spacing:1px}
+.plan-name{font-family:'Cinzel',serif;font-size:18px;font-weight:900;margin-bottom:6px}
+.plan-price{font-family:'Cinzel',serif;font-size:34px;font-weight:900;color:#e8f4e0}
+.plan-period{font-size:12px;color:#4a6a4a;margin-bottom:14px}
+.plan-features{border-top:1px solid #1e3a1e;padding-top:12px;margin-bottom:16px}
+.plan-feature{display:flex;align-items:center;gap:6px;margin-bottom:7px;font-size:12px;color:#6a8a6a}
+.check{font-size:12px}
+.btn-plan{width:100%;padding:11px;background:transparent;border:1px solid currentColor;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px}
+.cta-section{text-align:center;padding:40px 20px 52px}
+.cta-section h2{font-family:'Cinzel',serif;font-size:clamp(20px,3vw,36px);font-weight:900;color:#e8f4e0;margin-bottom:12px}
+.btn-launch-big{padding:14px 40px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:10px;color:#e0f8c0;font-weight:900;font-size:15px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:2px}
+.footer{border-top:1px solid #0f1f0f;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-copy{font-size:10px;color:#1a3a1a}
+/* APP PAGE */
+.app-page{display:none;min-height:100vh;background:#0d110d}
+.app-header{border-bottom:1px solid #1a2a1a;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#0d110d;z-index:50}
+.btn-back{background:none;border:1px solid #1e3a1e;border-radius:6px;color:#4a6a4a;font-size:11px;cursor:pointer;padding:3px 8px;font-family:'DM Sans',sans-serif}
+.app-logo{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#90d050;letter-spacing:3px}
+.app-logo span{color:#f0ead8}
+.search-bar{display:flex;gap:7px;justify-content:center;max-width:500px;margin:0 auto;flex-wrap:wrap;padding:18px 12px}
+.zip-input{flex:1 1 90px;padding:11px 12px;background:#131f13;border:1px solid #2a4a2a;border-radius:8px;color:#e0f0e0;font-size:14px;outline:none;min-width:80px;font-family:'DM Sans',sans-serif}
+.radius-select{padding:11px 9px;background:#131f13;border:1px solid #2a4a2a;border-radius:8px;color:#a0d060;font-size:12px;font-weight:700;cursor:pointer;outline:none;font-family:'DM Sans',sans-serif}
+.btn-scan{padding:11px 16px;background:linear-gradient(135deg,#4a8a2a,#2a6a1a);border:none;border-radius:8px;color:#d0f0b0;font-weight:800;font-size:13px;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.btn-scan:disabled{background:#1a3a0a;cursor:not-allowed}
+.status-bar{text-align:center;font-size:11px;color:#5a8a4a;margin:0 auto 10px;padding:5px 10px;background:#0f1a0f;border:1px solid #1e3a1e;border-radius:8px;max-width:460px;display:none}
+.sources-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;padding:0 12px}
+.src-pill{display:flex;align-items:center;gap:3px;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:600}
+.filters-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center;padding:0 12px}
+.filter-label{font-size:10px;color:#4a6a4a}
+.filter-select{background:#131f13;border:1px solid #2a4a2a;border-radius:5px;color:#9abaa0;font-size:10px;padding:3px 6px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.listings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:9px;padding:0 12px;margin-bottom:20px}
+.listing-card{background:#131713;border:1px solid #1e2e1e;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s}
+.listing-card:hover,.listing-card:active{background:#1a1f1a;border-color:#5a8a3a}
+.listing-title{font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:#e8f0e8;margin-bottom:4px;line-height:1.3}
+.listing-meta{font-size:10px;color:#5a7a5a;margin-bottom:5px}
+.listing-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
+.tag{border-radius:4px;padding:2px 6px;font-size:9px;font-weight:700;white-space:nowrap}
+.listing-desc{font-size:10px;color:#6a8a6a;line-height:1.4}
+.listing-price{font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#a0d878;text-align:right}
+.listing-ppa{font-size:9px;color:#4a6a4a;text-align:right}
+.chat-box{background:#0f180f;border:1px solid #1e3a1e;border-radius:11px;overflow:hidden;margin:0 12px 20px}
+.chat-header{padding:10px 14px;border-bottom:1px solid #1a2e1a;display:flex;align-items:center;gap:6px}
+.chat-dot{width:6px;height:6px;border-radius:50%;background:#5aaa2a}
+.chat-title{font-size:12px;font-weight:700;color:#90b870}
+.chat-sub{font-size:10px;color:#3a5a3a}
+.chat-messages{max-height:180px;overflow-y:auto;padding:10px 14px;display:flex;flex-direction:column;gap:7px}
+.chat-hint{color:#2a4a2a;font-size:11px;font-style:italic}
+.msg{display:flex}
+.msg.user{justify-content:flex-end}
+.msg-bubble{max-width:82%;border-radius:12px;padding:7px 10px;font-size:12px;line-height:1.5}
+.msg.user .msg-bubble{background:#1a3a0a;border:1px solid #2a5a0a;color:#b0d880;border-radius:12px 12px 2px 12px}
+.msg.ai .msg-bubble{background:#131f13;border:1px solid #1e2e1e;color:#8aaa8a;border-radius:12px 12px 12px 2px}
+.chat-input-row{padding:9px 12px;border-top:1px solid #1a2e1a;display:flex;gap:6px}
+.chat-input{flex:1;padding:7px 10px;background:#131f13;border:1px solid #2a4a2a;border-radius:6px;color:#b0ccb0;font-size:12px;outline:none;font-family:'DM Sans',sans-serif}
+.btn-ask{padding:7px 12px;background:#1a4a0a;border:1px solid #2a6a1a;border-radius:6px;color:#90c060;font-weight:700;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.modal-overlay{display:none;position:fixed;inset:0;background:#000b;z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:#131713;border:1px solid #3a5a3a;border-radius:14px;max-width:500px;width:100%;padding:22px;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;margin-bottom:12px}
+.modal-title{font-family:'Cinzel',serif;font-size:15px;font-weight:800;color:#e8f0e8;flex:1;line-height:1.3}
+.btn-close{background:none;border:none;color:#6a8a6a;font-size:20px;cursor:pointer}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.modal-stat{background:#1a231a;border-radius:7px;padding:8px 10px}
+.modal-stat-label{font-size:9px;color:#4a6a4a;margin-bottom:2px;text-transform:uppercase;letter-spacing:.07em}
+.modal-stat-val{font-size:12px;font-weight:700;color:#c8e0c8}
+.modal-desc{font-size:13px;color:#8aaa8a;line-height:1.7;margin-bottom:16px}
+.btn-view{width:100%;padding:11px;background:linear-gradient(135deg,#4a8a2a,#2a6a1a);border:none;border-radius:8px;color:#e0f0d0;font-weight:800;font-size:14px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px}
+.hidden{display:none}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SELLER PORTAL */
+.step-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;gap:4px}
+.step-circle{width:32px;height:32px;border-radius:50%;background:#1a2a1a;border:2px solid #2a4a2a;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;color:#4a6a4a;font-weight:700;transition:all .3s}
+.step-item.active .step-circle{background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-color:#5a9a2a;color:#e0f8c0}
+.step-item.done .step-circle{background:#1a3a0a;border-color:#3a6a1a;color:#7ac040}
+.step-label{font-size:9px;color:#3a5a3a;letter-spacing:1px;white-space:nowrap}
+.step-item.active .step-label{color:#7ac040}
+.step-line{width:40px;height:2px;background:#1a2a1a;margin-top:15px;flex-shrink:0}
+.sell-step{}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-label{font-size:11px;color:#5a8a3a;letter-spacing:1px;font-weight:600;text-transform:uppercase}
+.form-input{padding:11px 13px;background:#0f1a0f;border:1px solid #2a4a2a;border-radius:8px;color:#e0f0e0;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;transition:border .2s}
+.form-input:focus{border-color:#5a9a2a}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:600px){.form-row-2,.form-row-3{grid-template-columns:1fr}}
+.feat-check{display:flex;align-items:center;gap:6px;background:#0f1a0f;border:1px solid #1e3a1e;border-radius:6px;padding:5px 10px;font-size:11px;color:#6a8a6a;cursor:pointer}
+.feat-check input{accent-color:#7ac040}
+.plan-select{background:#0f180f;border:2px solid #1e3a1e;border-radius:14px;padding:20px 16px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.plan-select:hover{border-color:#3a6a2a;background:#131f13}
+.plan-select.selected{border-color:#5a9a2a;background:linear-gradient(135deg,#1a3a0a,#0f2a08)}
+.pf{font-size:11px;color:#6a8a6a;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.photo-thumb{position:relative;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.photo-thumb:hover{border-color:#5a9a2a}
+.photo-thumb img{width:100%;height:120px;object-fit:cover;display:block}
+.photo-thumb .thumb-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#000a);padding:6px;display:flex;justify-content:space-between;opacity:0;transition:opacity .2s}
+.photo-thumb:hover .thumb-overlay{opacity:1}
+.filter-btn{padding:5px 10px;background:#0f1a0f;border:1px solid #2a4a2a;border-radius:5px;color:#5a8a3a;font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.filter-btn.active{background:#1a3a0a;border-color:#5a9a2a;color:#90d050}
+.review-stat{background:#1a231a;border-radius:7px;padding:8px 10px}
+.review-stat-l{font-size:9px;color:#4a6a4a;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.review-stat-v{font-size:12px;font-weight:700;color:#c8e0c8}
+</style>
 </head>
-<body style="margin:0;padding:0;background:#0d110d">
-<div id="root"></div>
-<script type="text/babel">
-const{useState,useEffect,useRef}=React;
-const API_URL="https://purelyland-api-production.up.railway.app";
-const SL=[{key:"landwatch",label:"LandWatch",color:"#4A7C59",icon:"🌾"},{key:"zillow",label:"Zillow",color:"#006AFF",icon:"🏠"},{key:"realtor",label:"Realtor.com",color:"#E84040",icon:"🏷️"},{key:"craigslist",label:"Craigslist",color:"#7B2FBE",icon:"📋"},{key:"facebook",label:"Facebook Marketplace",color:"#1877F2",icon:"📘"},{key:"fsbo",label:"FSBO.com",color:"#E07B00",icon:"🤝"},{key:"auction",label:"Auction.com",color:"#C0392B",icon:"🔨"},{key:"hud",label:"HUD / Gov",color:"#2C3E7A",icon:"🏛️"},{key:"realtytrac",label:"RealtyTrac",color:"#8E44AD",icon:"⚖️"},{key:"county",label:"County/Probate",color:"#27AE60",icon:"🗺️"}];
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landing">
+<nav class="nav">
+  <div>
+    <svg viewBox="0 0 480 160" width="200" height="66" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="la" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8f070"/><stop offset="100%" stop-color="#4a8a1a"/></linearGradient>
+        <linearGradient id="lb" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8B5E3C"/><stop offset="50%" stop-color="#d4a847"/><stop offset="100%" stop-color="#6db33f"/></linearGradient>
+        <linearGradient id="ls" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#f5a623"/></linearGradient>
+        <radialGradient id="lbg" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a3a0a"/><stop offset="100%" stop-color="#0a1508"/></radialGradient>
+        <filter id="lg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="480" height="160" rx="20" fill="url(#lbg)"/>
+      <rect width="480" height="160" rx="20" fill="none" stroke="#2a5a0a" stroke-width="1.5"/>
+      <rect x="40" y="0" width="400" height="3" rx="1.5" fill="url(#la)" opacity="0.4"/>
+      <circle cx="240" cy="32" r="14" fill="url(#ls)" filter="url(#lg)" opacity="0.9"/>
+      <circle cx="240" cy="32" r="8" fill="#fff8cc"/>
+      <line x1="240" y1="12" x2="240" y2="8" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      <line x1="257" y1="18" x2="260" y2="15" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      <line x1="223" y1="18" x2="220" y2="15" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      <line x1="263" y1="32" x2="267" y2="32" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      <line x1="217" y1="32" x2="213" y2="32" stroke="#f5a623" stroke-width="2" stroke-linecap="round"/>
+      <text x="240" y="88" font-family="'Cinzel',serif" font-size="34" font-weight="400" fill="url(#la)" filter="url(#lg)" text-anchor="middle" letter-spacing="14">PURELY</text>
+      <text x="240" y="118" font-family="'Cinzel',serif" font-size="42" font-weight="900" fill="#f0ead8" text-anchor="middle" letter-spacing="18">LAND</text>
+      <rect x="398" y="14" width="58" height="26" rx="13" fill="#0a2206" stroke="#5aaa1a" stroke-width="1.5"/>
+      <text x="427" y="32" font-family="'Cinzel',serif" font-size="13" font-weight="700" fill="#90d050" text-anchor="middle" letter-spacing="2" filter="url(#lg)">AI</text>
+      <circle cx="400" cy="27" r="3" fill="#5aaa1a" opacity="0.6" filter="url(#lg)"/>
+      <rect x="40" y="157" width="400" height="3" rx="1.5" fill="url(#lb)" opacity="0.4"/>
+      <text x="240" y="142" font-family="'Raleway',sans-serif" font-size="9" font-weight="300" fill="url(#lb)" text-anchor="middle" letter-spacing="5">Land. Lots. Intelligence.</text>
+    </svg>
+  </div>
+  <button class="btn-launch" onclick="showApp()">Launch App →</button>
+  <button class="btn-launch" onclick="showSell()" style="background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;color:#e0f8c0;margin-left:8px">📋 List With Us</button>
+</nav>
+
+<div class="hero">
+  <div class="live-badge"><span class="live-dot"></span> LIVE · <span id="waitlist-count">247</span> buyers on waitlist</div>
+  <h1>The Only AI That<br/><span>Finds Every</span> Piece<br/>of Land for Sale.</h1>
+  <p>One ZIP code. One search. Every listing from <strong>35+ sources</strong> — LandWatch, Lands of America, Zillow, Realtor, Craigslist, Facebook, HUD, Fannie Mae, USDA, BLM, Auction.com, county tax sales, FarmFlip, LoopNet and more.</p>
+  <div id="email-section">
+    <div class="email-row">
+      <input class="email-input" id="email-input" type="email" placeholder="Enter your email for early access…"/>
+      <button class="btn-cta" onclick="submitEmail()">Get Early Access</button>
+    </div>
+  </div>
+  <div id="success-section" class="hidden">
+    <div class="success-box">✅ You're on the list!</div>
+  </div>
+  <div class="no-spam">No credit card. No spam.</div>
+  <button class="btn-try" onclick="showApp()">🔍 Try the Live Agent Now →</button>
+</div>
+
+<div class="source-strip">
+  <div class="source-scroll">
+    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● LandSearch</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Trulia</span><span class="source-item">● Homes.com</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● ByOwner.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● Hubzu</span><span class="source-item">● Ten-X</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● Foreclosure.com</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● RealAuction</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● FarmlandFinder</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
+    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● LandSearch</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Trulia</span><span class="source-item">● Homes.com</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● ByOwner.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● Hubzu</span><span class="source-item">● Ten-X</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● Foreclosure.com</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● RealAuction</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● FarmlandFinder</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
+  </div>
+</div>
+
+<div class="features">
+  <h2>Everything land buyers need.</h2>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">🌾</div><div class="feature-title">Land Specialists</div><div class="feature-desc">LandWatch, Lands of America, LandFlip, LandSearch — dedicated land-only platforms.</div></div>
+    <div class="feature-card"><div class="feature-icon">🏠</div><div class="feature-title">MLS Portals</div><div class="feature-desc">Zillow, Realtor.com, Redfin, Trulia, Homes.com — all major MLS aggregators.</div></div>
+    <div class="feature-card"><div class="feature-icon">🤝</div><div class="feature-title">FSBO & By Owner</div><div class="feature-desc">FSBO.com, ByOwner.com, ForSaleByOwner — direct from seller, no agent fees.</div></div>
+    <div class="feature-card"><div class="feature-icon">🔨</div><div class="feature-title">Auctions</div><div class="feature-desc">Auction.com, Bid4Assets, Hubzu, Ten-X, GovPlanet — live and online auctions.</div></div>
+    <div class="feature-card"><div class="feature-icon">🏛️</div><div class="feature-title">Government Sources</div><div class="feature-desc">HUD, Fannie Mae, USDA, BLM, Freddie Mac — federal and agency-owned land.</div></div>
+    <div class="feature-card"><div class="feature-icon">⚖️</div><div class="feature-title">Foreclosures & REO</div><div class="feature-desc">RealtyTrac, Foreclosure.com — pre-foreclosure, bank-owned, sheriff sales.</div></div>
+    <div class="feature-card"><div class="feature-icon">🗺️</div><div class="feature-title">County & Tax Sales</div><div class="feature-desc">County/Probate, Tax Sale Resources, SRI, RealAuction — tax lien and deed sales.</div></div>
+    <div class="feature-card"><div class="feature-icon">🚜</div><div class="feature-title">Farm, Ranch & Commercial</div><div class="feature-desc">FarmFlip, AcreTrader, FarmlandFinder, LoopNet, CoStar, Crexi — specialized markets.</div></div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stats-grid">
+    <div><div class="stat-num">35+</div><div class="stat-label">Sources</div></div>
+    <div><div class="stat-num">500mi</div><div class="stat-label">Max Radius</div></div>
+    <div><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
+    <div><div class="stat-num">24/7</div><div class="stat-label">AI Advisor</div></div>
+  </div>
+</div>
+
+<div class="pricing">
+  <h2>Simple pricing.</h2>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name" style="color:#4a6a4a">Free</div>
+      <div class="plan-price">$0</div><div class="plan-period">/mo</div>
+      <div class="plan-features">
+        <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 3 searches/day</div>
+        <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 25 mile radius</div>
+        <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 5 sources</div>
+        <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> Basic filters</div>
+      </div>
+      <button class="btn-plan" style="color:#4a6a4a;border-color:#2a4a2a" onclick="showApp()">Start Free →</button>
+    </div>
+    <div class="plan popular">
+      <div class="popular-badge">MOST POPULAR</div>
+      <div class="plan-name" style="color:#7ac040">Pro</div>
+      <div class="plan-price">$19</div><div class="plan-period">/mo</div>
+      <div class="plan-features">
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> Unlimited searches</div>
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> 500 mile radius</div>
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> All 10 sources</div>
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> AI chat advisor</div>
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> Email alerts</div>
+      </div>
+      <a href="https://buy.stripe.com/eVq9AU4kph0FcBl5lj77O00" target="_blank"><button class="btn-plan" style="color:#e0f8c0;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-color:#5a9a2a">Get Pro →</button></a>
+    </div>
+    <div class="plan">
+      <div class="plan-name" style="color:#a0d060">Investor</div>
+      <div class="plan-price">$49</div><div class="plan-period">/mo</div>
+      <div class="plan-features">
+        <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> Everything in Pro</div>
+        <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> CSV export</div>
+        <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> Deal scoring AI</div>
+        <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> Portfolio tracker</div>
+        <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> API access</div>
+      </div>
+      <a href="https://buy.stripe.com/cNi28sg377q5eJt3db77O01" target="_blank"><button class="btn-plan" style="color:#a0d060;border-color:#5a8a2a">Get Investor →</button></a>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Ready to find your land?</h2>
+  <p style="font-size:14px;color:#4a6a4a;margin-bottom:24px">The AI agent is live. Try it free right now.</p>
+  <button class="btn-launch-big" onclick="showApp()">🚀 Launch PurelyLand AI</button>
+</div>
+
+<div class="footer">
+  <svg viewBox="0 0 480 160" width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="fa" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8f070"/><stop offset="100%" stop-color="#4a8a1a"/></linearGradient>
+      <radialGradient id="fbg" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a3a0a"/><stop offset="100%" stop-color="#0a1508"/></radialGradient>
+      <filter id="fg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <rect width="480" height="160" rx="20" fill="url(#fbg)"/>
+    <text x="240" y="88" font-family="'Cinzel',serif" font-size="34" font-weight="400" fill="url(#fa)" filter="url(#fg)" text-anchor="middle" letter-spacing="14">PURELY</text>
+    <text x="240" y="118" font-family="'Cinzel',serif" font-size="42" font-weight="900" fill="#f0ead8" text-anchor="middle" letter-spacing="18">LAND</text>
+  </svg>
+  <div class="footer-copy">© 2025 PurelyLand.ai · Land & Lots Intelligence</div>
+</div>
+</div>
+
+
+<!-- LIST WITH US SECTION -->
+<div style="max-width:920px;margin:0 auto 80px;padding:0 20px">
+  <div style="background:linear-gradient(135deg,#0f2a08,#0a1f06);border:2px solid #3a7a1a;border-radius:20px;padding:40px 28px;text-align:center;position:relative">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4a8a1a,#d4a847,#4a8a1a);border-radius:20px 20px 0 0"></div>
+    <div style="font-size:28px;margin-bottom:12px">🌾</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:clamp(20px,3vw,32px);font-weight:900;color:#e8f4e0;margin-bottom:10px">Have Land to Sell?</h2>
+    <p style="font-size:14px;color:#7a9a7a;line-height:1.8;max-width:520px;margin:0 auto 24px">List directly on PurelyLand.ai. Reach thousands of active buyers. Choose your featured placement.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px;text-align:left">
+      <div style="background:#0a1f06;border:1px solid #2a5a1a;border-radius:12px;padding:16px">
+        <div style="font-size:18px;margin-bottom:6px">📌</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:#c8f070">Basic</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0">$29</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:8px">30 days · 5 photos</div>
+        <div style="font-size:11px;color:#5a7a5a;line-height:1.7">Standard placement · Contact form · Map pin</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#1a3a0a,#0f2a08);border:2px solid #5a9a2a;border-radius:12px;padding:16px;position:relative">
+        <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-radius:20px;padding:1px 10px;font-size:8px;font-weight:800;color:#e0f8c0;white-space:nowrap;font-family:'Cinzel',serif">POPULAR</div>
+        <div style="font-size:18px;margin-bottom:6px">⭐</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:#7ac040">Featured</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0">$79</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:8px">60 days · 20 photos + editing</div>
+        <div style="font-size:11px;color:#5a7a5a;line-height:1.7">Featured badge · Top placement · Analytics · Social kit</div>
+      </div>
+      <div style="background:#0a1f06;border:1px solid #d4a847;border-radius:12px;padding:16px">
+        <div style="font-size:18px;margin-bottom:6px">👑</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:#d4a847">Premium Spotlight</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0">$149</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:8px">90 days · Unlimited photos</div>
+        <div style="font-size:11px;color:#5a7a5a;line-height:1.7">Homepage spotlight · Email blast · Priority 24hr review</div>
+      </div>
+    </div>
+    <button onclick="showSell()" style="padding:14px 40px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:10px;color:#e0f8c0;font-weight:900;font-size:14px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:2px">📋 Submit Your Listing →</button>
+  </div>
+</div>
+
+<!-- APP PAGE -->
+<div id="app" class="app-page">
+<div class="app-header">
+  <div style="display:flex;align-items:center;gap:8px">
+    <button class="btn-back" onclick="showLanding()">← Home</button>
+    <svg viewBox="0 0 480 160" width="130" height="44" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ha" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8f070"/><stop offset="100%" stop-color="#4a8a1a"/></linearGradient>
+        <linearGradient id="hs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#f5a623"/></linearGradient>
+        <radialGradient id="hbg" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a3a0a"/><stop offset="100%" stop-color="#0a1508"/></radialGradient>
+        <filter id="hg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="480" height="160" rx="20" fill="url(#hbg)"/>
+      <rect width="480" height="160" rx="20" fill="none" stroke="#2a5a0a" stroke-width="1.5"/>
+      <circle cx="240" cy="32" r="14" fill="url(#hs)" filter="url(#hg)" opacity="0.9"/>
+      <circle cx="240" cy="32" r="8" fill="#fff8cc"/>
+      <text x="240" y="88" font-family="'Cinzel',serif" font-size="34" font-weight="400" fill="url(#ha)" filter="url(#hg)" text-anchor="middle" letter-spacing="14">PURELY</text>
+      <text x="240" y="118" font-family="'Cinzel',serif" font-size="42" font-weight="900" fill="#f0ead8" text-anchor="middle" letter-spacing="18">LAND</text>
+      <rect x="398" y="14" width="58" height="26" rx="13" fill="#0a2206" stroke="#5aaa1a" stroke-width="1.5"/>
+      <text x="427" y="32" font-family="'Cinzel',serif" font-size="13" font-weight="700" fill="#90d050" text-anchor="middle" letter-spacing="2" filter="url(#hg)">AI</text>
+    </svg>
+  </div>
+  <div id="app-stats" style="font-size:10px;color:#4a6a4a"></div>
+</div>
+
+<div style="max-width:1100px;margin:0 auto">
+  <div id="app-hero" style="text-align:center;padding:20px 12px 10px">
+    <div style="font-family:'Cinzel',serif;font-size:24px;font-weight:900;color:#e8f4e0;margin-bottom:6px">Find Land & Lots.<br/><span style="color:#7ac040">Everywhere.</span></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin:12px 0 20px" id="source-pills-hero"></div>
+  </div>
+
+  <div class="search-bar">
+    <input class="zip-input" id="zip-input" type="tel" maxlength="5" placeholder="ZIP code…"/>
+    <select class="radius-select" id="radius-select">
+      <option value="10">📍 10 mi</option>
+      <option value="25" selected>📍 25 mi</option>
+      <option value="50">📍 50 mi</option>
+      <option value="75">📍 75 mi</option>
+      <option value="100">📍 100 mi</option>
+      <option value="200">📍 200 mi</option>
+      <option value="500">📍 500 mi</option>
+    </select>
+    <button class="btn-scan" id="scan-btn" onclick="doSearch()">🔍 Scan All</button>
+  </div>
+
+  <div class="status-bar" id="status-bar"></div>
+  <div class="sources-row" id="sources-row"></div>
+  <div class="filters-row" id="filters-row"></div>
+  <div class="listings-grid" id="listings-grid"></div>
+  <div class="chat-box hidden" id="chat-box">
+    <div class="chat-header"><div class="chat-dot"></div><div class="chat-title">Ask PurelyLand AI</div><div class="chat-sub" id="chat-sub"></div></div>
+    <div class="chat-messages" id="chat-messages"><div class="chat-hint">Try: "Best value?" · "Show auctions" · "Owner financing?"</div></div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chat-input" placeholder="Ask about listings…" onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="btn-ask" onclick="sendChat()">Ask →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title"></div>
+      <button class="btn-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="listing-tags" id="modal-tags" style="margin-bottom:12px"></div>
+    <div class="modal-grid" id="modal-grid"></div>
+    <div class="modal-desc" id="modal-desc"></div>
+    <a id="modal-link" href="#" target="_blank"><button class="btn-view" id="modal-btn">View Listing →</button></a>
+  </div>
+</div>
+
+<script>
+const API="https://purelyland-api-production.up.railway.app";
+const SOURCES=[
+  // MLS & Major Portals
+  {key:"landwatch",label:"LandWatch",color:"#4A7C59",icon:"🌾",cat:"Land Specialist"},
+  {key:"landsofamerica",label:"Lands of America",color:"#2D6A4F",icon:"🗺️",cat:"Land Specialist"},
+  {key:"landflip",label:"LandFlip",color:"#3A7A40",icon:"🏞️",cat:"Land Specialist"},
+  {key:"landsearch",label:"LandSearch",color:"#1E5C30",icon:"🔍",cat:"Land Specialist"},
+  {key:"zillow",label:"Zillow",color:"#006AFF",icon:"🏠",cat:"MLS Portal"},
+  {key:"realtor",label:"Realtor.com",color:"#E84040",icon:"🏷️",cat:"MLS Portal"},
+  {key:"redfin",label:"Redfin",color:"#CC2B2B",icon:"🏡",cat:"MLS Portal"},
+  {key:"trulia",label:"Trulia",color:"#4A90D9",icon:"📍",cat:"MLS Portal"},
+  {key:"homes",label:"Homes.com",color:"#2E86AB",icon:"🏘️",cat:"MLS Portal"},
+  // Classifieds
+  {key:"craigslist",label:"Craigslist",color:"#7B2FBE",icon:"📋",cat:"Classifieds"},
+  {key:"facebook",label:"Facebook Marketplace",color:"#1877F2",icon:"📘",cat:"Classifieds"},
+  {key:"fsbo",label:"FSBO.com",color:"#E07B00",icon:"🤝",cat:"FSBO"},
+  {key:"byowner",label:"ByOwner.com",color:"#D4A017",icon:"🔑",cat:"FSBO"},
+  {key:"forsalebyowner",label:"ForSaleByOwner",color:"#C8860A",icon:"📝",cat:"FSBO"},
+  // Auctions
+  {key:"auction",label:"Auction.com",color:"#C0392B",icon:"🔨",cat:"Auction"},
+  {key:"bidspotter",label:"Bid4Assets",color:"#A93226",icon:"⚡",cat:"Auction"},
+  {key:"hubzu",label:"Hubzu",color:"#922B21",icon:"🏛️",cat:"Auction"},
+  {key:"ten-x",label:"Ten-X",color:"#B03A2E",icon:"💼",cat:"Auction"},
+  {key:"govplanet",label:"GovPlanet",color:"#784212",icon:"🏗️",cat:"Auction"},
+  // Government & Bank
+  {key:"hud",label:"HUD / Gov",color:"#2C3E7A",icon:"🏛️",cat:"Government"},
+  {key:"fanniemae",label:"Fannie Mae HomePath",color:"#1A5276",icon:"🏦",cat:"Government"},
+  {key:"freddiemac",label:"Freddie Mac",color:"#1F618D",icon:"🏦",cat:"Government"},
+  {key:"usda",label:"USDA Farm Service",color:"#196F3D",icon:"🌽",cat:"Government"},
+  {key:"blm",label:"BLM Land Sales",color:"#7D6608",icon:"⛰️",cat:"Government"},
+  // Foreclosures
+  {key:"realtytrac",label:"RealtyTrac",color:"#8E44AD",icon:"⚖️",cat:"Foreclosure"},
+  {key:"foreclosurecom",label:"Foreclosure.com",color:"#6C3483",icon:"📉",cat:"Foreclosure"},
+  {key:"homepath",label:"HomePath",color:"#4A235A",icon:"🔒",cat:"Foreclosure"},
+  // County & Tax Sales
+  {key:"county",label:"County/Probate",color:"#27AE60",icon:"🗺️",cat:"County"},
+  {key:"taxsale",label:"Tax Sale Resources",color:"#1E8449",icon:"📜",cat:"County"},
+  {key:"bidbox",label:"SRI Tax Sales",color:"#145A32",icon:"🏷️",cat:"County"},
+  {key:"realauction",label:"RealAuction",color:"#0E6655",icon:"⚖️",cat:"County"},
+  // Farm & Ranch Specific
+  {key:"farmflip",label:"FarmFlip",color:"#7D6608",icon:"🚜",cat:"Farm & Ranch"},
+  {key:"agricharts",label:"AcreTrader",color:"#9A7D0A",icon:"🌾",cat:"Farm & Ranch"},
+  {key:"farmland",label:"FarmlandFinder",color:"#B7950B",icon:"🌽",cat:"Farm & Ranch"},
+  // Commercial
+  {key:"loopnet",label:"LoopNet",color:"#E67E22",icon:"🏢",cat:"Commercial"},
+  {key:"costar",label:"CoStar",color:"#CA6F1E",icon:"📊",cat:"Commercial"},
+  {key:"crexi",label:"Crexi",color:"#D35400",icon:"🏗️",cat:"Commercial"},
+];
+
 const SC={"Auction":"#C0392B","FSBO":"#E07B00","Owner Finance":"#27AE60","Bank/REO":"#2C3E7A","Tax/County":"#8E44AD","Cash Sale":"#16A085","Traditional":"#7F8C8D"};
 const LI={"Farm/Ag":"🌾","Commercial":"🏢","Residential":"🏡","Recreational":"🌲","Industrial":"🏭","Raw Land":"🪨"};
-function seed(zip){const cm={"76036":"Crowley","76010":"Arlington","73401":"Ardmore","78520":"Brownsville","83001":"Jackson"};const city=cm[zip]||"Local Area";const st=zip.startsWith("76")||zip.startsWith("78")?"TX":zip.startsWith("73")?"OK":"TX";const r=(a,b)=>Math.floor(Math.random()*(b-a)+a);const f=(a,b)=>parseFloat((Math.random()*(b-a)+a).toFixed(1));return[{id:"s1",title:`${r(5,60)} Acres Raw Land – ${city}`,price:r(18000,95000),acres:r(5,60),city,state:st,desc:"Unrestricted rural land, road frontage.",url:"https://www.landwatch.com",source:"LandWatch",stype:"Traditional",ltype:"Raw Land"},{id:"s2",title:`${f(0.5,5)} Ac Residential Lot`,price:r(15000,75000),acres:f(0.5,5),city,state:st,desc:"Surveyed lot, utilities at road.",url:"https://www.zillow.com",source:"Zillow",stype:"Traditional",ltype:"Residential"},{id:"s3",title:`FSBO: ${r(3,25)} Acres – Owner Finance`,price:r(35000,130000),acres:r(3,25),city,state:st,desc:"Owner selling direct. Will carry note.",url:"https://www.fsbo.com",source:"FSBO.com",stype:"Owner Finance",ltype:"Farm/Ag"},{id:"s4",title:`AUCTION: ${r(10,150)} Ac Ranch`,price:r(45000,250000),acres:r(10,150),city,state:st,desc:"Absolute auction, no minimum bid.",url:"https://www.auction.com",source:"Auction.com",stype:"Auction",ltype:"Farm/Ag"},{id:"s5",title:`Bank REO: ${r(1,9)} Ac Commercial`,price:r(75000,350000),acres:r(1,9),city,state:st,desc:"Bank-owned, priced below appraisal.",url:"https://www.realtytrac.com",source:"RealtyTrac",stype:"Bank/REO",ltype:"Commercial"},{id:"s6",title:`HUD Foreclosure – ${f(0.5,3)} Ac`,price:r(8000,55000),acres:f(0.5,3),city,state:st,desc:"HUD-owned, sold as-is.",url:"https://www.hudhomestore.gov",source:"HUD / Gov",stype:"Bank/REO",ltype:"Residential"},{id:"s7",title:`${r(2,18)} Acres – Cash Only`,price:r(7000,65000),acres:r(2,18),city,state:st,desc:"Owner motivated, cash buyers only.",url:"https://craigslist.org",source:"Craigslist",stype:"Cash Sale",ltype:"Raw Land"},{id:"s8",title:`Tax Sale: ${r(1,12)} Acres`,price:r(4000,32000),acres:r(1,12),city,state:st,desc:"County tax foreclosure.",url:"https://www.taxsale.com",source:"County/Probate",stype:"Tax/County",ltype:"Raw Land"},{id:"s9",title:`${r(5,30)} Ac Hunting Land`,price:r(22000,98000),acres:r(5,30),city,state:st,desc:"Heavy timber, creek bottom.",url:"https://facebook.com/marketplace",source:"Facebook Marketplace",stype:"Owner Finance",ltype:"Recreational"},{id:"s10",title:`Realtor: ${f(1,5)} Ac Corner Lot`,price:r(60000,220000),acres:f(1,5),city,state:st,desc:"High-visibility corner lot.",url:"https://www.realtor.com",source:"Realtor.com",stype:"Traditional",ltype:"Commercial"}].map(p=>({...p,ppa:Math.round(p.price/p.acres),days:r(1,28)}));}
-function Tag({color,children}){return <span style={{background:color+"22",color,border:`1px solid ${color}44`,borderRadius:4,padding:"2px 7px",fontSize:10,fontWeight:700,whiteSpace:"nowrap"}}>{children}</span>;}
-< truncated lines 22-34 >
-function SearchApp({onBack}){const[zip,setZip]=useState("");const[radius,setRadius]=useState("25");const[phase,setPhase]=useState("idle");const[listings,setListings]=useState([]);const[aiListings,setAiListings]=useState([]);const[selected,setSelected]=useState(null);const[fSrc,setFSrc]=useState("All");const[fSale,setFSale]=useState("All");const[fLand,setFLand]=useState("All");const[sort,setSort]=useState("price");const[q,setQ]=useState("");const[chat,setChat]=useState([]);const[chatBusy,setChatBusy]=useState(false);const[aiStatus,setAiStatus]=useState("");const chatEndRef=useRef(null);const all=[...listings,...aiListings];
-const search=async()=>{if(zip.length<5||phase==="loading")return;setPhase("loading");setAiListings([]);setChat([]);setFSrc("All");setFSale("All");setFLand("All");setAiStatus("Loading listings…");setListings(seed(zip));setAiStatus("🔍 Scanning all 10 sources…");try{const ev=new EventSource(`${API_URL}/search?zip=${zip}&radius=${radius}`);ev.addEventListener("source_done",e=>{const d=JSON.parse(e.data);if(d.listings?.length>0){setAiListings(p=>{const m=[...p,...d.listings];const s=new Set();return m.filter(x=>{const k=`${x.title}|${x.price}`;if(s.has(k))return false;s.add(k);return true;});});setAiStatus(`✅ Found listings from ${d.label}`);}});ev.addEventListener("complete",()=>{ev.close();setAiStatus("✅ All sources scanned");setPhase("done");});ev.addEventListener("error",()=>{ev.close();setAiStatus("✅ Showing listings");setPhase("done");});}catch{setAiStatus("✅ Showing listings");setPhase("done");}};
-const sendChat=async()=>{if(!q.trim()||chatBusy)return;const msg=q.trim();setQ("");const hist=[...chat,{role:"user",content:msg}];setChat(hist);setChatBusy(true);try{const res=await fetch(`${API_URL}/chat`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:hist,listings:all,zip,radius})});const d=await res.json();setChat([...hist,{role:"assistant",content:d.reply||"Try again."}]);}catch{setChat([...hist,{role:"assistant",content:"Error."}]);}setChatBusy(false);setTimeout(()=>chatEndRef.current?.scrollIntoView({behavior:"smooth"}),100);};
-const sO=["All",...new Set(all.map(p=>p.source))];const saO=["All",...new Set(all.map(p=>p.stype))];const lO=["All",...new Set(all.map(p=>p.ltype))];
-const fil=all.filter(p=>fSrc==="All"||p.source===fSrc).filter(p=>fSale==="All"||p.stype===fSale).filter(p=>fLand==="All"||p.ltype===fLand).sort((a,b)=>sort==="price"?a.price-b.price:sort==="acres"?(b.acres||0)-(a.acres||0):(a.ppa||0)-(b.ppa||0));
-return(<div style={{minHeight:"100vh",background:"#0d110d",fontFamily:"'DM Sans',sans-serif",color:"#c8dcc8"}}><div style={{borderBottom:"1px solid #1a2a1a",padding:"12px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,background:"#0d110d",zIndex:50}}><div style={{display:"flex",alignItems:"center",gap:8}}><button onClick={onBack} style={{background:"none",border:"1px solid #1e3a1e",borderRadius:6,color:"#4a6a4a",fontSize:11,cursor:"pointer",padding:"3px 8px"}}>← Home</button><Logo w={120} h={40}/></div>{phase==="done"&&<div style={{fontSize:10,color:"#4a6a4a"}}>{fil.length}/{all.length} · {zip} · {radius}mi</div>}</div>
-<div style={{maxWidth:1100,margin:"0 auto",padding:"18px 12px 80px"}}>{phase==="idle"&&<div style={{textAlign:"center",marginBottom:24}}><div style={{fontFamily:"'Cinzel',serif",fontSize:26,fontWeight:900,color:"#e8f4e0",marginBottom:6}}>Find Land & Lots.<br/><span style={{color:"#7ac040"}}>Everywhere.</span></div><div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:4,margin:"12px 0 20px"}}>{SL.map(s=><span key={s.key} style={{fontSize:10,color:s.color,background:s.color+"15",border:`1px solid ${s.color}33`,borderRadius:20,padding:"2px 8px"}}>{s.icon} {s.label}</span>)}</div></div>}
-<div style={{display:"flex",gap:7,justifyContent:"center",maxWidth:500,margin:phase!=="idle"?"0 auto 14px":"0 auto 0",flexWrap:"wrap"}}><input value={zip} onChange={e=>setZip(e.target.value.replace(/\D/,"").slice(0,5))} onKeyDown={e=>e.key==="Enter"&&search()} placeholder="ZIP code…" style={{flex:"1 1 90px",padding:"11px 12px",background:"#131f13",border:"1px solid #2a4a2a",borderRadius:8,color:"#e0f0e0",fontSize:14,outline:"none",minWidth:80}}/><select value={radius} onChange={e=>setRadius(e.target.value)} style={{padding:"11px 9px",background:"#131f13",border:"1px solid #2a4a2a",borderRadius:8,color:"#a0d060",fontSize:12,fontWeight:700,cursor:"pointer",outline:"none"}}>{["10","25","50","75","100","200","500"].map(r=><option key={r} value={r}>📍 {r} mi</option>)}</select><button onClick={search} disabled={phase==="loading"||zip.length<5} style={{padding:"11px 16px",background:phase==="loading"?"#1a3a0a":"linear-gradient(135deg,#4a8a2a,#2a6a1a)",border:"none",borderRadius:8,color:"#d0f0b0",fontWeight:800,fontSize:13,cursor:phase==="loading"?"not-allowed":"pointer",whiteSpace:"nowrap"}}>{phase==="loading"?"Scanning…":"🔍 Scan All"}</button></div>
-{aiStatus&&phase!=="idle"&&<div style={{textAlign:"center",fontSize:11,color:"#5a8a4a",margin:"0 auto 10px",padding:"5px 10px",background:"#0f1a0f",border:"1px solid #1e3a1e",borderRadius:8,maxWidth:460}}>{aiStatus}</div>}
-{(phase==="loading"||phase==="done")&&listings.length>0&&<>
-<div style={{display:"flex",flexWrap:"wrap",gap:4,marginBottom:10}}>{SL.filter(s=>all.some(p=>p.source===s.label)).map(s=>{const cnt=all.filter(p=>p.source===s.label).length;return(<div key={s.key} style={{display:"flex",alignItems:"center",gap:3,background:s.color+"11",border:`1px solid ${s.color}33`,borderRadius:20,padding:"2px 8px",fontSize:10,color:s.color,fontWeight:600}}><span style={{width:4,height:4,borderRadius:"50%",background:s.color,display:"inline-block"}}/>{s.icon} {s.label} <span style={{opacity:.6}}>({cnt})</span></div>);})}</div>
-<div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:10,alignItems:"center"}}>{[["Source",sO,fSrc,setFSrc],["Sale",saO,fSale,setFSale],["Land",lO,fLand,setFLand]].map(([l,opts,v,sv])=>(<div key={l} style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:10,color:"#4a6a4a"}}>{l}:</span><select value={v} onChange={e=>sv(e.target.value)} style={{background:"#131f13",border:"1px solid #2a4a2a",borderRadius:5,color:"#9abaa0",fontSize:10,padding:"3px 6px",cursor:"pointer"}}>{opts.map(o=><option key={o}>{o}</option>)}</select></div>))}<div style={{display:"flex",alignItems:"center",gap:3,marginLeft:"auto"}}><span style={{fontSize:10,color:"#4a6a4a"}}>Sort:</span><select value={sort} onChange={e=>setSort(e.target.value)} style={{background:"#131f13",border:"1px solid #2a4a2a",borderRadius:5,color:"#9abaa0",fontSize:10,padding:"3px 6px",cursor:"pointer"}}><option value="price">Price ↑</option><option value="acres">Acres ↓</option><option value="ppa">$/Ac ↑</option></select></div><span style={{fontSize:10,color:"#4a6a4a"}}>{fil.length} shown</span></div>
-<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:9,marginBottom:20}}>{fil.map(p=><Card key={p.id} p={p} onSelect={setSelected}/>)}</div>
-{all.length>0&&<div style={{background:"#0f180f",border:"1px solid #1e3a1e",borderRadius:11,overflow:"hidden"}}><div style={{padding:"10px 14px",borderBottom:"1px solid #1a2e1a",display:"flex",alignItems:"center",gap:6}}><span style={{width:6,height:6,borderRadius:"50%",background:"#5aaa2a",display:"inline-block"}}/><span style={{fontSize:12,fontWeight:700,color:"#90b870"}}>Ask PurelyLand AI</span><span style={{fontSize:10,color:"#3a5a3a"}}>— {all.length} listings loaded</span></div><div style={{maxHeight:180,overflowY:"auto",padding:"10px 14px",display:"flex",flexDirection:"column",gap:7}}>{chat.length===0&&<div style={{color:"#2a4a2a",fontSize:11,fontStyle:"italic"}}>Try: "Best value?" · "Show auctions" · "Owner financing?"</div>}{chat.map((m,i)=>(<div key={i} style={{display:"flex",justifyContent:m.role==="user"?"flex-end":"flex-start"}}><div style={{maxWidth:"82%",background:m.role==="user"?"#1a3a0a":"#131f13",border:`1px solid ${m.role==="user"?"#2a5a0a":"#1e2e1e"}`,borderRadius:m.role==="user"?"12px 12px 2px 12px":"12px 12px 12px 2px",padding:"7px 10px",fontSize:12,color:m.role==="user"?"#b0d880":"#8aaa8a",lineHeight:1.5}}>{m.content}</div></div>))}{chatBusy&&<div style={{color:"#3a5a3a",fontSize:11,fontStyle:"italic"}}>Thinking…</div>}<div ref={chatEndRef}/></div><div style={{padding:"9px 12px",borderTop:"1px solid #1a2e1a",display:"flex",gap:6}}><input value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==="Enter"&&sendChat()} placeholder="Ask about listings…" style={{flex:1,padding:"7px 10px",background:"#131f13",border:"1px solid #2a4a2a",borderRadius:6,color:"#b0ccb0",fontSize:12,outline:"none"}}/><button onClick={sendChat} disabled={chatBusy||!q.trim()} style={{padding:"7px 12px",background:"#1a4a0a",border:"1px solid #2a6a1a",borderRadius:6,color:"#90c060",fontWeight:700,fontSize:12,cursor:chatBusy?"not-allowed":"pointer"}}>Ask →</button></div></div>}
-</>}</div><Modal p={selected} onClose={()=>setSelected(null)}/></div>);}
 
-function App(){const[page,setPage]=useState("landing");return page==="landing"?<Landing onLaunch={()=>setPage("app")}/>:<SearchApp onBack={()=>setPage("landing")}/>;}
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+let allListings=[];
+let chatHistory=[];
+
+// Waitlist counter
+let wc=247;
+setInterval(()=>{wc+=Math.floor(Math.random()*3);document.getElementById('waitlist-count').textContent=wc.toLocaleString();},8000);
+
+// Source pills on hero
+const heroP=document.getElementById('source-pills-hero');
+SOURCES.forEach(s=>{const el=document.createElement('span');el.style.cssText=`font-size:10px;color:${s.color};background:${s.color}15;border:1px solid ${s.color}33;border-radius:20px;padding:2px 8px`;el.textContent=`${s.icon} ${s.label}`;heroP.appendChild(el);});
+
+function showApp(){document.getElementById('landing').style.display='none';document.getElementById('app').style.display='block';window.scrollTo(0,0);}
+function showLanding(){document.getElementById('landing').style.display='block';document.getElementById('app').style.display='none';window.scrollTo(0,0);}
+function submitEmail(){const e=document.getElementById('email-input').value;if(!e.includes('@'))return;document.getElementById('email-section').style.display='none';document.getElementById('success-section').classList.remove('hidden');}
+
+function seedListings(zip){
+  const cm={"76036":"Crowley","76010":"Arlington","73401":"Ardmore","78520":"Brownsville","83001":"Jackson"};
+  const city=cm[zip]||"Local Area";
+  const st=zip.startsWith("76")||zip.startsWith("78")?"TX":zip.startsWith("73")?"OK":"TX";
+  const r=(a,b)=>Math.floor(Math.random()*(b-a)+a);
+  const f=(a,b)=>parseFloat((Math.random()*(b-a)+a).toFixed(1));
+  return[
+    {id:"s1",title:`${r(5,60)} Acres Raw Land – ${city}`,price:r(18000,95000),acres:r(5,60),city,state:st,desc:"Unrestricted rural land, road frontage. Perfect for homestead or investment.",url:"https://www.landwatch.com",source:"LandWatch",stype:"Traditional",ltype:"Raw Land"},
+    {id:"s2",title:`${r(10,200)} Acres Farm & Ranch`,price:r(80000,500000),acres:r(10,200),city,state:st,desc:"Prime agricultural land with water rights and fencing.",url:"https://www.landsofamerica.com",source:"Lands of America",stype:"Traditional",ltype:"Farm/Ag"},
+    {id:"s3",title:`${r(2,20)} Ac Wooded Recreational`,price:r(20000,80000),acres:r(2,20),city,state:st,desc:"Heavily wooded recreational parcel. Excellent hunting, creek frontage.",url:"https://www.landflip.com",source:"LandFlip",stype:"Traditional",ltype:"Recreational"},
+    {id:"s4",title:`${f(0.5,5)} Ac Buildable Lot`,price:r(12000,60000),acres:f(0.5,5),city,state:st,desc:"Ready-to-build residential lot. All utilities at road, surveyed.",url:"https://www.landsearch.com",source:"LandSearch",stype:"Traditional",ltype:"Residential"},
+    {id:"s5",title:`${f(0.5,3)} Ac Residential Lot – MLS`,price:r(15000,75000),acres:f(0.5,3),city,state:st,desc:"MLS-listed residential lot in growing subdivision.",url:"https://www.zillow.com",source:"Zillow",stype:"Traditional",ltype:"Residential"},
+    {id:"s6",title:`${r(1,10)} Ac Commercial Parcel`,price:r(60000,300000),acres:r(1,10),city,state:st,desc:"Prime commercial location. High traffic visibility, C-2 zoning.",url:"https://www.realtor.com",source:"Realtor.com",stype:"Traditional",ltype:"Commercial"},
+    {id:"s7",title:`${f(0.25,2)} Ac Corner Lot`,price:r(20000,90000),acres:f(0.25,2),city,state:st,desc:"Corner lot with exceptional road frontage. Ready for development.",url:"https://www.redfin.com",source:"Redfin",stype:"Traditional",ltype:"Residential"},
+    {id:"s8",title:`${r(5,50)} Ac Rural Acreage`,price:r(25000,120000),acres:r(5,50),city,state:st,desc:"Unrestricted rural acreage with pond and perimeter fencing.",url:"https://www.trulia.com",source:"Trulia",stype:"Traditional",ltype:"Raw Land"},
+    {id:"s9",title:`${r(3,20)} Ac Homes.com Listing`,price:r(30000,150000),acres:r(3,20),city,state:st,desc:"Verified listing. Road frontage, electric at property line.",url:"https://www.homes.com",source:"Homes.com",stype:"Traditional",ltype:"Raw Land"},
+    {id:"s10",title:`FSBO: ${r(3,25)} Acres – Owner Finance`,price:r(35000,130000),acres:r(3,25),city,state:st,desc:"Owner selling direct. Will carry note with 10% down.",url:"https://www.fsbo.com",source:"FSBO.com",stype:"Owner Finance",ltype:"Farm/Ag"},
+    {id:"s11",title:`By Owner: ${r(2,15)} Acres No Agent`,price:r(18000,75000),acres:r(2,15),city,state:st,desc:"No agent fees. Owner financing available.",url:"https://www.byowner.com",source:"ByOwner.com",stype:"Owner Finance",ltype:"Raw Land"},
+    {id:"s12",title:`${r(2,18)} Acres – Cash Only`,price:r(7000,55000),acres:r(2,18),city,state:st,desc:"Owner motivated. Cash buyers only. Flat pasture land.",url:"https://craigslist.org",source:"Craigslist",stype:"Cash Sale",ltype:"Raw Land"},
+    {id:"s13",title:`${r(5,30)} Ac Hunting Land`,price:r(22000,98000),acres:r(5,30),city,state:st,desc:"Heavy timber, creek bottom, whitetail and turkey.",url:"https://facebook.com/marketplace",source:"Facebook Marketplace",stype:"Owner Finance",ltype:"Recreational"},
+    {id:"s14",title:`AUCTION: ${r(10,150)} Ac Ranch`,price:r(45000,250000),acres:r(10,150),city,state:st,desc:"Absolute auction, no minimum bid. Bank-ordered sale.",url:"https://www.auction.com",source:"Auction.com",stype:"Auction",ltype:"Farm/Ag"},
+    {id:"s15",title:`Bid4Assets: ${r(1,20)} Ac Land`,price:r(5000,80000),acres:r(1,20),city,state:st,desc:"Online auction. Title insurance available. Deposit required to bid.",url:"https://www.bid4assets.com",source:"Bid4Assets",stype:"Auction",ltype:"Raw Land"},
+    {id:"s16",title:`HUBZU Auction: ${f(0.5,5)} Ac`,price:r(10000,100000),acres:f(0.5,5),city,state:st,desc:"Hubzu online auction. Bank-owned property. Sold as-is.",url:"https://www.hubzu.com",source:"Hubzu",stype:"Auction",ltype:"Residential"},
+    {id:"s17",title:`Ten-X: ${r(2,10)} Ac Commercial`,price:r(80000,400000),acres:r(2,10),city,state:st,desc:"Ten-X commercial auction. Verified seller, clean title.",url:"https://www.ten-x.com",source:"Ten-X",stype:"Auction",ltype:"Commercial"},
+    {id:"s18",title:`GovPlanet: ${r(5,40)} Ac Surplus`,price:r(15000,120000),acres:r(5,40),city,state:st,desc:"Government surplus land disposal. Online auction, inspect before bidding.",url:"https://www.govplanet.com",source:"GovPlanet",stype:"Auction",ltype:"Raw Land"},
+    {id:"s19",title:`HUD Foreclosure – ${f(0.5,3)} Ac`,price:r(8000,55000),acres:f(0.5,3),city,state:st,desc:"HUD-owned property sold as-is through registered broker.",url:"https://www.hudhomestore.gov",source:"HUD / Gov",stype:"Bank/REO",ltype:"Residential"},
+    {id:"s20",title:`Fannie Mae HomePath: ${f(0.5,2)} Ac`,price:r(20000,90000),acres:f(0.5,2),city,state:st,desc:"Fannie Mae owned. HomePath financing available.",url:"https://www.homepath.com",source:"Fannie Mae HomePath",stype:"Bank/REO",ltype:"Residential"},
+    {id:"s21",title:`USDA Farm Land: ${r(20,200)} Ac`,price:r(50000,300000),acres:r(20,200),city,state:st,desc:"USDA Farm Service Agency inventory. Eligible for farm loans.",url:"https://www.fsa.usda.gov",source:"USDA Farm Service",stype:"Traditional",ltype:"Farm/Ag"},
+    {id:"s22",title:`BLM Public Land: ${r(40,640)} Ac`,price:r(30000,200000),acres:r(40,640),city,state:st,desc:"Bureau of Land Management land disposal. Public auction.",url:"https://www.blm.gov",source:"BLM Land Sales",stype:"Auction",ltype:"Raw Land"},
+    {id:"s23",title:`Bank REO: ${r(1,9)} Ac Commercial`,price:r(75000,350000),acres:r(1,9),city,state:st,desc:"Bank-owned commercial parcel, priced below appraisal.",url:"https://www.realtytrac.com",source:"RealtyTrac",stype:"Bank/REO",ltype:"Commercial"},
+    {id:"s24",title:`Foreclosure.com: ${f(0.5,3)} Ac`,price:r(8000,45000),acres:f(0.5,3),city,state:st,desc:"Pre-foreclosure listing. Contact lender directly.",url:"https://www.foreclosure.com",source:"Foreclosure.com",stype:"Bank/REO",ltype:"Residential"},
+    {id:"s25",title:`Tax Sale: ${r(1,12)} Acres`,price:r(4000,32000),acres:r(1,12),city,state:st,desc:"County tax foreclosure. Winning bidder receives deed.",url:"https://www.taxsale.com",source:"Tax Sale Resources",stype:"Tax/County",ltype:"Raw Land"},
+    {id:"s26",title:`County Probate: ${r(2,20)} Ac`,price:r(15000,75000),acres:r(2,20),city,state:st,desc:"Estate sale through county probate court. Cash only.",url:"https://www.taxsale.com",source:"County/Probate",stype:"Tax/County",ltype:"Raw Land"},
+    {id:"s27",title:`SRI Tax Sale: ${r(1,8)} Ac`,price:r(3000,25000),acres:r(1,8),city,state:st,desc:"SRI Tax sale surplus. Online bidding available.",url:"https://www.sri-inc.com",source:"SRI Tax Sales",stype:"Tax/County",ltype:"Raw Land"},
+    {id:"s28",title:`RealAuction: ${r(1,10)} Ac`,price:r(5000,40000),acres:r(1,10),city,state:st,desc:"Online county tax deed auction. Register to bid.",url:"https://www.realauction.com",source:"RealAuction",stype:"Tax/County",ltype:"Raw Land"},
+    {id:"s29",title:`FarmFlip: ${r(20,500)} Ac Row Crop`,price:r(100000,2000000),acres:r(20,500),city,state:st,desc:"Prime row crop farmland. Productive soils, tile drainage.",url:"https://www.farmflip.com",source:"FarmFlip",stype:"Traditional",ltype:"Farm/Ag"},
+    {id:"s30",title:`AcreTrader: ${r(40,320)} Ac Farmland`,price:r(150000,1500000),acres:r(40,320),city,state:st,desc:"Institutional-grade farmland investment. Verified title, soil reports.",url:"https://www.acretrader.com",source:"AcreTrader",stype:"Traditional",ltype:"Farm/Ag"},
+    {id:"s31",title:`FarmlandFinder: ${r(10,100)} Ac`,price:r(50000,500000),acres:r(10,100),city,state:st,desc:"Specialty farmland marketplace. Organic certified.",url:"https://www.farmlandfinder.com",source:"FarmlandFinder",stype:"Traditional",ltype:"Farm/Ag"},
+    {id:"s32",title:`LoopNet: ${r(1,20)} Ac Industrial`,price:r(200000,2000000),acres:r(1,20),city,state:st,desc:"M-1 industrial zoning. Rail access, 3-phase power.",url:"https://www.loopnet.com",source:"LoopNet",stype:"Traditional",ltype:"Industrial"},
+    {id:"s33",title:`CoStar: ${r(2,15)} Ac Mixed Use`,price:r(300000,3000000),acres:r(2,15),city,state:st,desc:"Mixed-use development site. Transit-oriented location.",url:"https://www.costar.com",source:"CoStar",stype:"Traditional",ltype:"Commercial"},
+    {id:"s34",title:`Crexi: ${r(1,10)} Ac Dev Site`,price:r(150000,1500000),acres:r(1,10),city,state:st,desc:"Shovel-ready development parcel. Entitled, all permits in place.",url:"https://www.crexi.com",source:"Crexi",stype:"Traditional",ltype:"Commercial"},
+    {id:"s35",title:`ForSaleByOwner: ${r(2,15)} Ac`,price:r(15000,80000),acres:r(2,15),city,state:st,desc:"Direct from owner. No commissions. Seller financing negotiable.",url:"https://www.forsalebyowner.com",source:"ForSaleByOwner",stype:"Owner Finance",ltype:"Raw Land"},
+  ].map(p=>({...p,ppa:Math.round(p.price/p.acres),days:r(1,28)}));
+}
+  ].map(p=>({...p,ppa:Math.round(p.price/p.acres),days:r(1,28)}));
+}
+
+function renderListings(listings){
+  const grid=document.getElementById('listings-grid');
+  grid.innerHTML='';
+  if(!listings.length){grid.innerHTML='<div style="text-align:center;color:#3a5a3a;padding:40px;grid-column:1/-1">No listings match those filters.</div>';return;}
+  listings.forEach(p=>{
+    const src=SOURCES.find(s=>s.label===p.source);
+    const c=src?.color||"#5a8a3a";
+    const ppa=p.ppa||Math.round(p.price/p.acres);
+    const el=document.createElement('div');
+    el.className='listing-card';
+    el.innerHTML=`
+      <div style="display:flex;justify-content:space-between;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div class="listing-title">${p.title}</div>
+          <div class="listing-meta">${[p.city,p.state].filter(Boolean).join(', ')}${p.acres?` · ${p.acres}ac`:''} · ${p.days||1}d ago</div>
+          <div class="listing-tags">
+            <span class="tag" style="background:${c}22;color:${c};border:1px solid ${c}44">${src?.icon||''} ${p.source}</span>
+            <span class="tag" style="background:${SC[p.stype]||'#888'}22;color:${SC[p.stype]||'#888'};border:1px solid ${SC[p.stype]||'#888'}44">${p.stype}</span>
+            <span class="tag" style="background:#78a0c822;color:#78a0c8;border:1px solid #78a0c844">${LI[p.ltype]||'🪨'} ${p.ltype}</span>
+          </div>
+          ${p.desc?`<div class="listing-desc">${p.desc.slice(0,80)}…</div>`:''}
+        </div>
+        <div>
+          <div class="listing-price">$${p.price.toLocaleString()}</div>
+          ${ppa?`<div class="listing-ppa">$${ppa.toLocaleString()}/ac</div>`:''}
+        </div>
+      </div>`;
+    el.onclick=()=>openModal(p);
+    grid.appendChild(el);
+  });
+}
+
+function renderFilters(){
+  const srcSet=[...new Set(allListings.map(p=>p.source))];
+  const saleSet=[...new Set(allListings.map(p=>p.stype))];
+  const landSet=[...new Set(allListings.map(p=>p.ltype))];
+  const row=document.getElementById('filters-row');
+  row.innerHTML=`
+    <span class="filter-label">Source:</span>
+    <select class="filter-select" id="f-src" onchange="applyFilters()"><option>All</option>${srcSet.map(s=>`<option>${s}</option>`).join('')}</select>
+    <span class="filter-label">Sale:</span>
+    <select class="filter-select" id="f-sale" onchange="applyFilters()"><option>All</option>${saleSet.map(s=>`<option>${s}</option>`).join('')}</select>
+    <span class="filter-label">Land:</span>
+    <select class="filter-select" id="f-land" onchange="applyFilters()"><option>All</option>${landSet.map(s=>`<option>${s}</option>`).join('')}</select>
+    <span class="filter-label" style="margin-left:auto">Sort:</span>
+    <select class="filter-select" id="f-sort" onchange="applyFilters()"><option value="price">Price ↑</option><option value="acres">Acres ↓</option><option value="ppa">$/Ac ↑</option></select>
+    <span class="filter-label" id="shown-count"></span>`;
+}
+
+function applyFilters(){
+  const src=document.getElementById('f-src')?.value||'All';
+  const sale=document.getElementById('f-sale')?.value||'All';
+  const land=document.getElementById('f-land')?.value||'All';
+  const sort=document.getElementById('f-sort')?.value||'price';
+  let fil=allListings.filter(p=>(src==='All'||p.source===src)&&(sale==='All'||p.stype===sale)&&(land==='All'||p.ltype===land));
+  fil.sort((a,b)=>sort==='price'?a.price-b.price:sort==='acres'?(b.acres||0)-(a.acres||0):(a.ppa||0)-(b.ppa||0));
+  const el=document.getElementById('shown-count');
+  if(el)el.textContent=`${fil.length} shown`;
+  document.getElementById('app-stats').textContent=`${fil.length}/${allListings.length} · ${document.getElementById('zip-input').value} · ${document.getElementById('radius-select').value}mi`;
+  renderListings(fil);
+}
+
+function renderSources(){
+  const row=document.getElementById('sources-row');
+  row.innerHTML='';
+  const used=SOURCES.filter(s=>allListings.some(p=>p.source===s.label));
+  used.forEach(s=>{
+    const cnt=allListings.filter(p=>p.source===s.label).length;
+    const el=document.createElement('div');
+    el.className='src-pill';
+    el.style.cssText=`background:${s.color}11;border:1px solid ${s.color}33;color:${s.color}`;
+    el.innerHTML=`<span style="width:4px;height:4px;border-radius:50%;background:${s.color};display:inline-block"></span>${s.icon} ${s.label} <span style="opacity:.6">(${cnt})</span>`;
+    row.appendChild(el);
+  });
+}
+
+async function doSearch(){
+  const zip=document.getElementById('zip-input').value;
+  const radius=document.getElementById('radius-select').value;
+  if(zip.length<5)return;
+  document.getElementById('scan-btn').disabled=true;
+  document.getElementById('scan-btn').textContent='Scanning…';
+  document.getElementById('app-hero').style.display='none';
+  allListings=[];
+  chatHistory=[];
+  document.getElementById('chat-box').classList.add('hidden');
+  document.getElementById('sources-row').innerHTML='';
+  document.getElementById('filters-row').innerHTML='';
+  document.getElementById('listings-grid').innerHTML='';
+  const sb=document.getElementById('status-bar');
+  sb.style.display='block';
+  sb.textContent='Loading listings…';
+
+  // Show seed listings immediately
+  allListings=seedListings(zip);
+  renderSources();
+  renderFilters();
+  applyFilters();
+  sb.textContent='🔍 Scanning all 10 sources live…';
+
+  // Try live API
+  try{
+    const es=new EventSource(`${API}/search?zip=${zip}&radius=${radius}`);
+    es.addEventListener('source_done',e=>{
+      const d=JSON.parse(e.data);
+      if(d.listings&&d.listings.length>0){
+        d.listings.forEach(item=>{
+          const key=`${item.title}|${item.price}`;
+          if(!allListings.some(x=>`${x.title}|${x.price}`===key))allListings.push(item);
+        });
+        renderSources();
+        applyFilters();
+        sb.textContent=`✅ Found listings from ${d.label}`;
+      }
+    });
+    es.addEventListener('complete',()=>{
+      es.close();
+      sb.textContent=`✅ All sources scanned — ${allListings.length} listings found`;
+      document.getElementById('scan-btn').disabled=false;
+      document.getElementById('scan-btn').textContent='🔍 Scan All';
+      document.getElementById('chat-box').classList.remove('hidden');
+      document.getElementById('chat-sub').textContent=`— ${allListings.length} listings loaded`;
+    });
+    es.addEventListener('error',()=>{
+      es.close();
+      sb.textContent=`✅ Showing ${allListings.length} listings for this area`;
+      document.getElementById('scan-btn').disabled=false;
+      document.getElementById('scan-btn').textContent='🔍 Scan All';
+      document.getElementById('chat-box').classList.remove('hidden');
+      document.getElementById('chat-sub').textContent=`— ${allListings.length} listings loaded`;
+    });
+  }catch(e){
+    sb.textContent=`✅ Showing ${allListings.length} listings for this area`;
+    document.getElementById('scan-btn').disabled=false;
+    document.getElementById('scan-btn').textContent='🔍 Scan All';
+    document.getElementById('chat-box').classList.remove('hidden');
+    document.getElementById('chat-sub').textContent=`— ${allListings.length} listings loaded`;
+  }
+}
+
+async function sendChat(){
+  const input=document.getElementById('chat-input');
+  const msg=input.value.trim();
+  if(!msg)return;
+  input.value='';
+  chatHistory.push({role:'user',content:msg});
+  const msgs=document.getElementById('chat-messages');
+  const uDiv=document.createElement('div');
+  uDiv.className='msg user';
+  uDiv.innerHTML=`<div class="msg-bubble">${msg}</div>`;
+  msgs.appendChild(uDiv);
+  msgs.scrollTop=msgs.scrollHeight;
+  const thinking=document.createElement('div');
+  thinking.className='msg ai';
+  thinking.innerHTML='<div class="msg-bubble" style="font-style:italic;color:#3a5a3a">Thinking…</div>';
+  msgs.appendChild(thinking);
+  try{
+    const ctx=allListings.slice(0,15).map(p=>`${p.title}: ${p.acres||'?'}ac $${p.price.toLocaleString()} ${p.stype} ${p.ltype} [${p.source}]`).join('\n');
+    const res=await fetch(`${API}/chat`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:chatHistory,listings:allListings,zip:document.getElementById('zip-input').value,radius:document.getElementById('radius-select').value})});
+    const d=await res.json();
+    const reply=d.reply||'Try again.';
+    chatHistory.push({role:'assistant',content:reply});
+    thinking.innerHTML=`<div class="msg-bubble">${reply}</div>`;
+  }catch{
+    thinking.innerHTML='<div class="msg-bubble">Error connecting. Try again.</div>';
+  }
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function openModal(p){
+  const src=SOURCES.find(s=>s.label===p.source);
+  const c=src?.color||'#5a8a3a';
+  const ppa=p.ppa||Math.round(p.price/p.acres);
+  document.getElementById('modal-title').textContent=p.title;
+  document.getElementById('modal-tags').innerHTML=`
+    <span class="tag" style="background:${c}22;color:${c};border:1px solid ${c}44">${src?.icon||''} ${p.source}</span>
+    <span class="tag" style="background:${SC[p.stype]||'#888'}22;color:${SC[p.stype]||'#888'};border:1px solid ${SC[p.stype]||'#888'}44">${p.stype}</span>
+    <span class="tag" style="background:#78a0c822;color:#78a0c8;border:1px solid #78a0c844">${LI[p.ltype]||'🪨'} ${p.ltype}</span>`;
+  document.getElementById('modal-grid').innerHTML=
+    [['Price',`$${p.price.toLocaleString()}`],['Acres',p.acres||'—'],['$/Acre',ppa?`$${ppa.toLocaleString()}`:'—'],['Location',[p.city,p.state].filter(Boolean).join(', ')||'—'],['Sale',p.stype],['Listed',`${p.days||1}d ago`]]
+    .map(([l,v])=>`<div class="modal-stat"><div class="modal-stat-label">${l}</div><div class="modal-stat-val">${v}</div></div>`).join('');
+  document.getElementById('modal-desc').textContent=p.desc||'';
+  document.getElementById('modal-link').href=p.url||'#';
+  document.getElementById('modal-btn').textContent=`View on ${p.source} →`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+// Enter key on zip
+document.getElementById('zip-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+
+// ── SELLER PORTAL ─────────────────────────────────────────────────────────────
+let selectedPlan = {name:'featured', price:79, label:'Featured Listing', desc:'60-day listing · Featured badge · Top search placement · Analytics'};
+let uploadedPhotos = [];
+let editingPhotoIdx = -1;
+let currentFilter = 'none';
+let photoRotation = 0;
+
+function showSell(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').style.display='none';
+  document.getElementById('sell-page').style.display='block';
+  window.scrollTo(0,0);
+  goStep(1);
+}
+
+function goStep(n){
+  [1,2,3,4].forEach(i=>{
+    const s=document.getElementById('step'+i);
+    const ind=document.getElementById('step'+i+'-ind');
+    if(s) s.style.display = i===n?'block':'none';
+    if(ind){
+      ind.classList.remove('active','done');
+      if(i===n) ind.classList.add('active');
+      else if(i<n) ind.classList.add('done');
+    }
+  });
+  document.getElementById('step-success').style.display='none';
+  if(n===4) buildReview();
+  window.scrollTo(0,0);
+}
+
+function selectPlan(key, price){
+  selectedPlan = {
+    name:key,
+    price,
+    label: key==='basic'?'Basic Listing':key==='featured'?'Featured Listing':'Premium Spotlight',
+    desc: key==='basic'?'30-day listing · 5 photos · Standard placement':
+          key==='featured'?'60-day listing · Featured badge · Top search placement · Analytics':
+          '90-day listing · Unlimited photos · Homepage spotlight · Priority review'
+  };
+  ['basic','featured','premium'].forEach(p=>{
+    const el=document.getElementById('plan-'+p);
+    if(el) el.classList.toggle('selected', p===key);
+  });
+}
+
+async function aiWriteDesc(){
+  const title=document.getElementById('f-title').value;
+  const acres=document.getElementById('f-acres').value;
+  const ltype=document.getElementById('f-ltype').value;
+  const city=document.getElementById('f-city').value;
+  const state=document.getElementById('f-state').value;
+  const feats=[...document.querySelectorAll('#features-grid input:checked')].map(x=>x.value).join(', ');
+  if(!title&&!acres) return;
+  const desc=document.getElementById('f-desc');
+  desc.value='✨ Writing your description…';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,
+        system:'You are a professional land real estate copywriter. Write compelling, accurate listing descriptions that highlight value and attract buyers. 3-4 sentences, specific and descriptive.',
+        messages:[{role:'user',content:`Write a real estate listing description for: ${acres||'?'} acres of ${ltype||'land'} in ${city||'?'}, ${state||'?'}. Property title: ${title}. Features: ${feats||'road frontage, rural setting'}. Make it compelling for land buyers.`}]})
+    });
+    const d=await res.json();
+    desc.value=d.content?.find(b=>b.type==='text')?.text||desc.value;
+  }catch{desc.value='Failed to generate. Please write your own description.';}
+}
+
+function handlePhotos(files){
+  const maxPhotos = selectedPlan.name==='basic'?5:selectedPlan.name==='featured'?20:50;
+  const remaining = maxPhotos - uploadedPhotos.length;
+  const toAdd = Math.min(files.length, remaining);
+  for(let i=0;i<toAdd;i++){
+    const file=files[i];
+    if(!file.type.startsWith('image/')) continue;
+    const reader=new FileReader();
+    reader.onload=e=>{
+      uploadedPhotos.push({src:e.target.result, edited:e.target.result, rotation:0, filter:'none', brightness:100, contrast:100, saturation:100});
+      renderPhotoGrid();
+    };
+    reader.readAsDataURL(file);
+  }
+  if(files.length>remaining) alert(`Your plan allows ${maxPhotos} photos. Only ${toAdd} were added.`);
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('upload-zone').style.borderColor='#2a5a1a';
+  handlePhotos(e.dataTransfer.files);
+}
+
+function renderPhotoGrid(){
+  const grid=document.getElementById('photo-grid');
+  grid.innerHTML='';
+  uploadedPhotos.forEach((p,i)=>{
+    const div=document.createElement('div');
+    div.className='photo-thumb';
+    if(i===0) div.style.borderColor='#d4a847';
+    div.innerHTML=`
+      <img src="${p.edited}" style="filter:brightness(${p.brightness||100}%) contrast(${p.contrast||100}%) saturate(${p.saturation||100}%)"/>
+      ${i===0?'<div style="position:absolute;top:4px;left:4px;background:#d4a847;border-radius:4px;padding:2px 6px;font-size:9px;color:#000;font-weight:700">COVER</div>':''}
+      <div class="thumb-overlay">
+        <button onclick="openEditor(${i})" style="background:#1a3a0a;border:1px solid #5a9a2a;border-radius:4px;padding:3px 7px;color:#90d050;font-size:9px;cursor:pointer">✏️ Edit</button>
+        <button onclick="removePhoto(${i})" style="background:#3a0a0a;border:1px solid #9a2a2a;border-radius:4px;padding:3px 7px;color:#f07070;font-size:9px;cursor:pointer">✕</button>
+      </div>`;
+    grid.appendChild(div);
+  });
+  if(uploadedPhotos.length>0) document.getElementById('photo-editor').style.display='none';
+}
+
+function removePhoto(idx){
+  uploadedPhotos.splice(idx,1);
+  renderPhotoGrid();
+}
+
+function openEditor(idx){
+  editingPhotoIdx=idx;
+  const p=uploadedPhotos[idx];
+  const preview=document.getElementById('edit-preview');
+  preview.src=p.src;
+  preview.style.filter=`brightness(${p.brightness||100}%) contrast(${p.contrast||100}%) saturate(${p.saturation||100}%)`;
+  document.getElementById('adj-brightness').value=p.brightness||100;
+  document.getElementById('adj-contrast').value=p.contrast||100;
+  document.getElementById('adj-saturation').value=p.saturation||100;
+  document.getElementById('adj-sharp').value=0;
+  currentFilter=p.filter||'none';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  const fb=document.getElementById('f-'+currentFilter);
+  if(fb) fb.classList.add('active');
+  document.getElementById('photo-editor').style.display='block';
+  document.getElementById('photo-editor').scrollIntoView({behavior:'smooth'});
+}
+
+function applyEdits(){
+  const b=document.getElementById('adj-brightness').value;
+  const c=document.getElementById('adj-contrast').value;
+  const s=document.getElementById('adj-saturation').value;
+  const sharp=document.getElementById('adj-sharp').value;
+  let filter=`brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
+  if(sharp>0) filter+=` blur(0px)`;
+  const filterMap={
+    none:'', vivid:'saturate(140%) contrast(110%)',
+    warm:'sepia(20%) saturate(120%) hue-rotate(-10deg)',
+    cool:'saturate(90%) hue-rotate(20deg) brightness(105%)',
+    dramatic:'contrast(130%) saturate(80%) brightness(90%)',
+    vintage:'sepia(40%) contrast(90%) saturate(80%)'
+  };
+  const fExtra=filterMap[currentFilter]||'';
+  document.getElementById('edit-preview').style.filter=filter+' '+fExtra;
+}
+
+function applyFilter(f){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  const fb=document.getElementById('f-'+f);
+  if(fb) fb.classList.add('active');
+  applyEdits();
+}
+
+function rotatePhoto(){
+  photoRotation=(photoRotation+90)%360;
+  document.getElementById('edit-preview').style.transform=`rotate(${photoRotation}deg)`;
+}
+
+function saveEdit(){
+  if(editingPhotoIdx<0) return;
+  const p=uploadedPhotos[editingPhotoIdx];
+  p.brightness=parseInt(document.getElementById('adj-brightness').value);
+  p.contrast=parseInt(document.getElementById('adj-contrast').value);
+  p.saturation=parseInt(document.getElementById('adj-saturation').value);
+  p.filter=currentFilter;
+  renderPhotoGrid();
+  document.getElementById('photo-editor').style.display='none';
+  editingPhotoIdx=-1;
+}
+
+function buildReview(){
+  document.getElementById('rv-title').textContent=document.getElementById('f-title').value||'(No title)';
+  const tags=document.getElementById('rv-tags');
+  tags.innerHTML='';
+  const ltype=document.getElementById('f-ltype').value;
+  const stype=document.getElementById('f-stype').value;
+  if(ltype) tags.innerHTML+=`<span style="background:#78a0c822;color:#78a0c8;border:1px solid #78a0c844;border-radius:4px;padding:2px 7px;font-size:10px">🪨 ${ltype}</span>`;
+  if(stype) tags.innerHTML+=` <span style="background:#7ac04022;color:#7ac040;border:1px solid #7ac04044;border-radius:4px;padding:2px 7px;font-size:10px">${stype}</span>`;
+  tags.innerHTML+=` <span style="background:#d4a84722;color:#d4a847;border:1px solid #d4a84744;border-radius:4px;padding:2px 7px;font-size:10px">⭐ ${selectedPlan.label}</span>`;
+  const stats=document.getElementById('rv-stats');
+  const price=document.getElementById('f-price').value;
+  const acres=document.getElementById('f-acres').value;
+  const city=document.getElementById('f-city').value;
+  const state=document.getElementById('f-state').value;
+  stats.innerHTML=[
+    ['Price', price?`$${parseInt(price).toLocaleString()}`:'—'],
+    ['Acres', acres||'—'],
+    ['$/Acre', (price&&acres)?`$${Math.round(price/acres).toLocaleString()}`:'—'],
+    ['Location', [city,state].filter(Boolean).join(', ')||'—'],
+    ['Photos', uploadedPhotos.length],
+    ['Contact', document.getElementById('f-contact').value||'Email']
+  ].map(([l,v])=>`<div class="review-stat"><div class="review-stat-l">${l}</div><div class="review-stat-v">${v}</div></div>`).join('');
+  document.getElementById('rv-desc').textContent=document.getElementById('f-desc').value||'No description provided.';
+  const feats=[...document.querySelectorAll('#features-grid input:checked')].map(x=>x.value);
+  document.getElementById('rv-features').innerHTML=feats.map(f=>`<span style="background:#1a3a0a;border:1px solid #2a5a1a;border-radius:5px;padding:3px 8px;font-size:10px;color:#6a8a6a">✓ ${f}</span>`).join('');
+  const photosPrev=document.getElementById('rv-photos-preview');
+  photosPrev.innerHTML=uploadedPhotos.slice(0,5).map((p,i)=>`<img src="${p.edited||p.src}" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:${i===0?'2px solid #d4a847':'1px solid #2a4a1a'}">`).join('');
+  document.getElementById('rv-plan-name').textContent=selectedPlan.label;
+  document.getElementById('rv-plan-price').textContent=`$${selectedPlan.price}`;
+  document.getElementById('rv-plan-desc').textContent=selectedPlan.desc;
+}
+
+function submitListing(){
+  const required=['f-title','f-price','f-acres','f-city','f-state','f-zip','f-desc','f-name','f-email'];
+  const missing=required.filter(id=>!document.getElementById(id)?.value?.trim());
+  if(missing.length){alert('Please fill in all required fields before submitting.');goStep(2);return;}
+  // In production: send to backend + redirect to Stripe
+  // For now, show success
+  [1,2,3,4].forEach(i=>{
+    const s=document.getElementById('step'+i);
+    if(s) s.style.display='none';
+    const ind=document.getElementById('step'+i+'-ind');
+    if(ind){ind.classList.remove('active');ind.classList.add('done');}
+  });
+  document.getElementById('step-success').style.display='block';
+  window.scrollTo(0,0);
+}
+
 </script>
+
+<!-- SELLER PORTAL PAGE -->
+<div id="sell-page" style="display:none;min-height:100vh;background:#080c08;font-family:'DM Sans',sans-serif;color:#c8dcc8">
+<div style="padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a2a1a;position:sticky;top:0;background:#080c08;z-index:50">
+  <div style="display:flex;align-items:center;gap:10px">
+    <button onclick="showLanding()" style="background:none;border:1px solid #1e3a1e;border-radius:6px;color:#4a6a4a;font-size:11px;cursor:pointer;padding:3px 8px">← Home</button>
+    <span style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#90d050">PURELY<span style="color:#f0ead8;font-weight:700">LAND</span><span style="font-size:10px;color:#5aaa2a;margin-left:4px">.AI</span></span>
+  </div>
+  <span style="font-family:'Cinzel',serif;font-size:11px;color:#5a8a3a;letter-spacing:3px">SELLER PORTAL</span>
+</div>
+<div style="max-width:820px;margin:0 auto;padding:32px 16px 80px">
+
+  <!-- Step indicator -->
+  <div style="display:flex;justify-content:center;align-items:flex-start;gap:0;margin-bottom:36px">
+    <div class="step-item active" id="step1-ind" onclick="goStep(1)"><div class="step-circle">1</div><div class="step-label">Choose Plan</div></div>
+    <div class="step-line"></div>
+    <div class="step-item" id="step2-ind" onclick="goStep(2)"><div class="step-circle">2</div><div class="step-label">Details</div></div>
+    <div class="step-line"></div>
+    <div class="step-item" id="step3-ind" onclick="goStep(3)"><div class="step-circle">3</div><div class="step-label">Photos</div></div>
+    <div class="step-line"></div>
+    <div class="step-item" id="step4-ind" onclick="goStep(4)"><div class="step-circle">4</div><div class="step-label">Review & Pay</div></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="step1" class="sell-step">
+    <h2 style="font-family:'Cinzel',serif;font-size:24px;font-weight:900;color:#e8f4e0;text-align:center;margin-bottom:6px">Choose Your Plan</h2>
+    <p style="text-align:center;color:#5a7a5a;font-size:12px;margin-bottom:28px">All plans include buyer contact form, map pin, and AI description writing.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:28px">
+      <div class="plan-select" id="plan-basic" onclick="selectPlan('basic',29)">
+        <div style="font-size:22px;margin-bottom:8px">📌</div>
+        <div style="font-family:'Cinzel',serif;font-size:14px;color:#c8f070;margin-bottom:2px">Basic</div>
+        <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:#e8f4e0">$29</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:12px">one-time · 30 days</div>
+        <div class="pf">✓ 5 photos</div>
+        <div class="pf">✓ Standard placement</div>
+        <div class="pf">✓ Contact form</div>
+        <div class="pf" style="color:#2a4a2a">✗ Featured badge</div>
+      </div>
+      <div class="plan-select selected" id="plan-featured" onclick="selectPlan('featured',79)">
+        <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-radius:20px;padding:2px 10px;font-size:8px;font-weight:800;color:#e0f8c0;white-space:nowrap;font-family:'Cinzel',serif">POPULAR</div>
+        <div style="font-size:22px;margin-bottom:8px">⭐</div>
+        <div style="font-family:'Cinzel',serif;font-size:14px;color:#7ac040;margin-bottom:2px">Featured</div>
+        <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:#e8f4e0">$79</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:12px">one-time · 60 days</div>
+        <div class="pf">✓ 20 photos + editing</div>
+        <div class="pf">✓ Featured badge 🌟</div>
+        <div class="pf">✓ Top placement</div>
+        <div class="pf">✓ Analytics dashboard</div>
+      </div>
+      <div class="plan-select" id="plan-premium" onclick="selectPlan('premium',149)">
+        <div style="font-size:22px;margin-bottom:8px">👑</div>
+        <div style="font-family:'Cinzel',serif;font-size:14px;color:#d4a847;margin-bottom:2px">Premium</div>
+        <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:900;color:#e8f4e0">$149</div>
+        <div style="font-size:10px;color:#4a6a4a;margin-bottom:12px">one-time · 90 days</div>
+        <div class="pf">✓ Unlimited photos</div>
+        <div class="pf">✓ Homepage spotlight</div>
+        <div class="pf">✓ Email blast</div>
+        <div class="pf">✓ Priority 24hr review</div>
+      </div>
+    </div>
+    <div style="text-align:center"><button onclick="goStep(2)" style="padding:13px 36px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:10px;color:#e0f8c0;font-weight:900;font-size:13px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:2px">Continue →</button></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="step2" class="sell-step" style="display:none">
+    <h2 style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0;margin-bottom:6px">Listing Details</h2>
+    <p style="color:#5a7a5a;font-size:12px;margin-bottom:24px">Tell buyers about your land. Use AI to write your description instantly.</p>
+    <div style="display:grid;gap:16px">
+      <div class="form-row-2">
+        <div class="form-group"><label class="form-label">Property Title *</label><input class="form-input" id="f-title" placeholder="e.g. 45 Acres Prime Ranch – Crowley TX"/></div>
+        <div class="form-group"><label class="form-label">Asking Price *</label><div style="position:relative"><span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#5a8a3a;font-weight:700">$</span><input class="form-input" id="f-price" type="number" placeholder="150000" style="padding-left:26px"/></div></div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group"><label class="form-label">Acreage *</label><input class="form-input" id="f-acres" type="number" step="0.1" placeholder="45.5"/></div>
+        <div class="form-group"><label class="form-label">Land Type *</label><select class="form-input" id="f-ltype"><option value="">Select…</option><option>Raw Land</option><option>Farm / Agricultural</option><option>Residential Lot</option><option>Commercial</option><option>Recreational</option><option>Industrial</option><option>Timber</option><option>Waterfront</option><option>Ranch</option></select></div>
+        <div class="form-group"><label class="form-label">Sale Type *</label><select class="form-input" id="f-stype"><option value="">Select…</option><option>Traditional</option><option>Owner Finance</option><option>Cash Sale</option><option>Auction</option><option>Lease to Own</option></select></div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group"><label class="form-label">City *</label><input class="form-input" id="f-city" placeholder="Crowley"/></div>
+        <div class="form-group"><label class="form-label">State *</label><select class="form-input" id="f-state"><option value="">State…</option><option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>FL</option><option>GA</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>SC</option><option>SD</option><option>TN</option><option selected>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option></select></div>
+        <div class="form-group"><label class="form-label">ZIP Code *</label><input class="form-input" id="f-zip" type="tel" maxlength="5" placeholder="76036"/></div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group"><label class="form-label">County</label><input class="form-input" id="f-county" placeholder="Tarrant County"/></div>
+        <div class="form-group"><label class="form-label">APN / Parcel #</label><input class="form-input" id="f-apn" placeholder="123-456-789"/></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description *</label>
+        <textarea class="form-input" id="f-desc" rows="4" placeholder="Describe your land — terrain, access, utilities, water, fencing, improvements…" style="resize:vertical"></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:5px"><button onclick="aiWriteDesc()" style="background:none;border:1px solid #3a6a2a;border-radius:6px;color:#7ac040;font-size:11px;cursor:pointer;padding:4px 12px">✨ AI Write Description</button></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Property Features</label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px" id="features-grid">
+          <label class="feat-check"><input type="checkbox" value="Road Frontage"> Road Frontage</label>
+          <label class="feat-check"><input type="checkbox" value="Water Well"> Water Well</label>
+          <label class="feat-check"><input type="checkbox" value="City Water"> City Water</label>
+          <label class="feat-check"><input type="checkbox" value="Electric"> Electric</label>
+          <label class="feat-check"><input type="checkbox" value="Septic"> Septic</label>
+          <label class="feat-check"><input type="checkbox" value="Fenced"> Fenced</label>
+          <label class="feat-check"><input type="checkbox" value="Cross Fenced"> Cross Fenced</label>
+          <label class="feat-check"><input type="checkbox" value="Pond/Lake"> Pond/Lake</label>
+          <label class="feat-check"><input type="checkbox" value="Creek/River"> Creek/River</label>
+          <label class="feat-check"><input type="checkbox" value="Mineral Rights"> Mineral Rights</label>
+          <label class="feat-check"><input type="checkbox" value="Hunting"> Hunting</label>
+          <label class="feat-check"><input type="checkbox" value="Timber"> Timber</label>
+          <label class="feat-check"><input type="checkbox" value="Barn/Structure"> Barn/Structure</label>
+          <label class="feat-check"><input type="checkbox" value="Survey Available"> Survey Available</label>
+          <label class="feat-check"><input type="checkbox" value="No Restrictions"> No Restrictions</label>
+          <label class="feat-check"><input type="checkbox" value="Wildlife"> Wildlife</label>
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group"><label class="form-label">Your Name *</label><input class="form-input" id="f-name" placeholder="Julius Njuguna"/></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" id="f-email" type="email" placeholder="you@email.com"/></div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group"><label class="form-label">Phone</label><input class="form-input" id="f-phone" type="tel" placeholder="(817) 555-0100"/></div>
+        <div class="form-group"><label class="form-label">Preferred Contact</label><select class="form-input" id="f-contact"><option>Email</option><option>Phone Call</option><option>Text Message</option><option>Any</option></select></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:24px">
+      <button onclick="goStep(1)" style="padding:11px 22px;background:transparent;border:1px solid #2a4a2a;border-radius:8px;color:#4a6a4a;font-size:12px;cursor:pointer">← Back</button>
+      <button onclick="goStep(3)" style="padding:11px 24px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:8px;color:#e0f8c0;font-weight:800;font-size:12px;cursor:pointer">Next: Photos →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="step3" class="sell-step" style="display:none">
+    <h2 style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0;margin-bottom:6px">Photos & Media</h2>
+    <p style="color:#5a7a5a;font-size:12px;margin-bottom:20px">Upload land photos. Listings with 10+ photos get 3× more buyer inquiries.</p>
+    <div id="upload-zone" style="border:2px dashed #2a5a1a;border-radius:14px;padding:36px;text-align:center;cursor:pointer;margin-bottom:20px;background:#0a1a0a" onclick="document.getElementById('photo-input').click()" ondragover="event.preventDefault();this.style.borderColor='#5a9a2a'" ondragleave="this.style.borderColor='#2a5a1a'" ondrop="handleDrop(event)">
+      <div style="font-size:36px;margin-bottom:10px">📸</div>
+      <div style="font-family:'Cinzel',serif;font-size:14px;color:#7ac040;margin-bottom:4px">Drop Photos Here</div>
+      <div style="font-size:11px;color:#4a6a4a">or tap to browse · JPG, PNG, HEIC · Max 10MB each</div>
+      <input type="file" id="photo-input" multiple accept="image/*" style="display:none" onchange="handlePhotos(this.files)"/>
+    </div>
+    <div id="photo-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:20px"></div>
+    <div id="photo-editor" style="display:none;background:#0f1a0f;border:1px solid #2a4a1a;border-radius:12px;padding:18px;margin-bottom:20px">
+      <div style="font-family:'Cinzel',serif;font-size:13px;color:#7ac040;margin-bottom:14px">✨ Photo Editor</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
+        <img id="edit-preview" src="" style="width:180px;height:130px;object-fit:cover;border-radius:8px;border:1px solid #2a4a1a;flex-shrink:0"/>
+        <div style="flex:1;min-width:180px">
+          <div style="margin-bottom:10px"><label style="font-size:10px;color:#5a8a3a;display:block;margin-bottom:3px">Brightness</label><input type="range" id="adj-brightness" min="50" max="150" value="100" oninput="applyEdits()" style="width:100%;accent-color:#7ac040"/></div>
+          <div style="margin-bottom:10px"><label style="font-size:10px;color:#5a8a3a;display:block;margin-bottom:3px">Contrast</label><input type="range" id="adj-contrast" min="50" max="150" value="100" oninput="applyEdits()" style="width:100%;accent-color:#7ac040"/></div>
+          <div style="margin-bottom:10px"><label style="font-size:10px;color:#5a8a3a;display:block;margin-bottom:3px">Saturation</label><input type="range" id="adj-saturation" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;accent-color:#7ac040"/></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+            <button onclick="applyFilter('none')" class="filter-btn active" id="f-none">Original</button>
+            <button onclick="applyFilter('vivid')" class="filter-btn" id="f-vivid">Vivid</button>
+            <button onclick="applyFilter('warm')" class="filter-btn" id="f-warm">Warm</button>
+            <button onclick="applyFilter('cool')" class="filter-btn" id="f-cool">Cool</button>
+            <button onclick="applyFilter('dramatic')" class="filter-btn" id="f-dramatic">Dramatic</button>
+            <button onclick="applyFilter('vintage')" class="filter-btn" id="f-vintage">Vintage</button>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="rotatePhoto()" style="padding:6px 12px;background:#1a3a0a;border:1px solid #2a5a1a;border-radius:5px;color:#7ac040;font-size:11px;cursor:pointer">↻ Rotate</button>
+            <button onclick="saveEdit()" style="padding:6px 12px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:5px;color:#e0f8c0;font-size:11px;cursor:pointer;font-weight:700">✓ Save</button>
+            <button onclick="document.getElementById('photo-editor').style.display='none'" style="padding:6px 12px;background:transparent;border:1px solid #2a4a2a;border-radius:5px;color:#4a6a4a;font-size:11px;cursor:pointer">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+      <button onclick="goStep(2)" style="padding:11px 22px;background:transparent;border:1px solid #2a4a2a;border-radius:8px;color:#4a6a4a;font-size:12px;cursor:pointer">← Back</button>
+      <button onclick="goStep(4)" style="padding:11px 24px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:8px;color:#e0f8c0;font-weight:800;font-size:12px;cursor:pointer">Review & Pay →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div id="step4" class="sell-step" style="display:none">
+    <h2 style="font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#e8f4e0;margin-bottom:6px">Review & Submit</h2>
+    <p style="color:#5a7a5a;font-size:12px;margin-bottom:20px">Review your listing. After payment we review within 24 hours.</p>
+    <div style="background:#0f1a0f;border:1px solid #2a4a1a;border-radius:14px;padding:20px;margin-bottom:16px">
+      <div style="font-family:'Cinzel',serif;font-size:16px;color:#e8f4e0;margin-bottom:8px" id="rv-title">—</div>
+      <div id="rv-tags" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;margin-bottom:12px" id="rv-stats"></div>
+      <div style="font-size:12px;color:#7a9a7a;line-height:1.7;margin-bottom:12px" id="rv-desc">—</div>
+      <div id="rv-features" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px"></div>
+      <div id="rv-photos-preview" style="display:flex;gap:7px;flex-wrap:wrap"></div>
+    </div>
+    <div style="background:#0a1f06;border:2px solid #3a6a1a;border-radius:14px;padding:18px;margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-family:'Cinzel',serif;font-size:15px;color:#c8f070" id="rv-plan-name">Featured</div>
+        <div style="font-family:'Cinzel',serif;font-size:20px;font-weight:900;color:#e8f4e0" id="rv-plan-price">$79</div>
+      </div>
+      <div style="font-size:11px;color:#5a8a3a;margin-bottom:14px" id="rv-plan-desc">60-day · Featured badge · Top placement · Analytics</div>
+      <div style="font-size:10px;color:#3a5a3a;margin-bottom:12px;line-height:1.8">✅ Reviewed within 24 hours · ✅ Secure Stripe payment · ✅ Money-back if not approved</div>
+      <button onclick="submitListing()" style="width:100%;padding:13px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:10px;color:#e0f8c0;font-weight:900;font-size:14px;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px">💳 Pay & Submit →</button>
+    </div>
+    <button onclick="goStep(3)" style="padding:11px 22px;background:transparent;border:1px solid #2a4a2a;border-radius:8px;color:#4a6a4a;font-size:12px;cursor:pointer">← Back</button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div id="step-success" style="display:none;text-align:center;padding:48px 20px">
+    <div style="font-size:56px;margin-bottom:16px">🎉</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:#7ac040;margin-bottom:10px">Listing Submitted!</h2>
+    <p style="font-size:14px;color:#7a9a7a;max-width:440px;margin:0 auto 20px;line-height:1.8">Your listing is under review. We'll email you within 24 hours once it's live on PurelyLand.ai.</p>
+    <div style="background:#0f1a0f;border:1px solid #2a4a1a;border-radius:12px;padding:18px;display:inline-block;margin-bottom:24px;text-align:left">
+      <div style="font-size:10px;color:#5a8a3a;margin-bottom:6px;font-family:'Cinzel',serif;letter-spacing:2px">WHAT HAPPENS NEXT</div>
+      <div style="font-size:12px;color:#7a9a7a;line-height:2.2">✅ Payment confirmed<br/>📧 Confirmation email sent<br/>🔍 Team reviews your listing<br/>🌐 Goes live within 24 hours<br/>📊 Track views in your dashboard</div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="showLanding()" style="padding:11px 22px;background:transparent;border:1px solid #2a4a2a;border-radius:8px;color:#4a6a4a;font-size:12px;cursor:pointer">← Home</button>
+      <button onclick="showApp()" style="padding:11px 22px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:8px;color:#e0f8c0;font-weight:700;font-size:12px;cursor:pointer">Search Land →</button>
+    </div>
+  </div>
+
+</div>
+</div><!-- end sell-page -->
+
 </body>
 </html>

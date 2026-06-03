@@ -14,7 +14,25 @@ a{text-decoration:none}
 .nav-purely{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:#90d050;letter-spacing:4px}
 .nav-land{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#f0ead8;letter-spacing:10px}
 .nav-tag{font-size:9px;color:#5a8a3a;letter-spacing:5px;margin-top:2px}
-.btn-launch{padding:8px 18px;background:transparent;border:1px solid #3a6a2a;border-radius:20px;color:#90c060;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.trial-box{background:linear-gradient(135deg,#1a3a0a,#0f2a08);border:2px solid #5a9a2a;border-radius:16px;padding:24px 28px;max-width:480px;margin:28px auto 0}
+.trial-badge{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#7ac040;text-align:center;letter-spacing:1px}
+.trial-perks{font-size:11px;color:#3a5a3a;text-align:center;margin-top:10px;letter-spacing:.04em}
+.trial-note{font-size:13px;color:#5a8a3a;text-align:center;margin-bottom:24px}
+.trial-chip{display:inline-block;background:#1a3a0a;border:1px solid #3a6a1a;border-radius:20px;padding:2px 10px;font-size:10px;color:#7ac040;margin-bottom:14px;font-weight:700;letter-spacing:.06em}
+.btn-ghost{padding:10px 22px;background:transparent;border:1px solid #2a4a2a;border-radius:8px;color:#5a8a4a;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.section-wrap{max-width:920px;margin:0 auto;padding:60px 20px}
+.section-label{font-size:10px;color:#3a6a2a;letter-spacing:6px;text-transform:uppercase;text-align:center;margin-bottom:12px;font-family:'Raleway',sans-serif}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,38px);font-weight:900;color:#e8f4e0;text-align:center;margin-bottom:36px;line-height:1.2}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.step-card{background:#0f180f;border:1px solid #1e3a1e;border-radius:12px;padding:24px 20px;text-align:center}
+.step-num{font-family:'Cinzel',serif;font-size:36px;font-weight:900;color:#2a5a2a;margin-bottom:10px;line-height:1}
+.step-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:#a0d060;margin-bottom:8px}
+.step-desc{font-size:12px;color:#4a6a4a;line-height:1.7}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cat-card{background:#0d180d;border:1px solid #1a2e1a;border-radius:10px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px}
+.cat-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.cat-name{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:#8aaa6a;margin-bottom:4px;letter-spacing:.5px}
+.cat-list{font-size:10px;color:#3a5a3a;line-height:1.6}
 .hero{text-align:center;padding:60px 20px 48px;max-width:760px;margin:0 auto}
 .live-badge{display:inline-flex;align-items:center;gap:8px;background:#1a3a1a;border:1px solid #2a5a2a;border-radius:20px;padding:5px 14px;font-size:12px;color:#7ac040;margin-bottom:24px;letter-spacing:.06em}
 .live-dot{width:6px;height:6px;border-radius:50%;background:#5aaa2a;animation:pulse 2s ease-in-out infinite}
@@ -193,43 +211,39 @@ a{text-decoration:none}
 </nav>
 
 <div class="hero">
-  <div class="live-badge"><span class="live-dot"></span> LIVE · <span id="waitlist-count">247</span> buyers on waitlist</div>
-  <h1>The Only AI That<br/><span>Finds Every</span> Piece<br/>of Land for Sale.</h1>
-  <p>One ZIP code. One search. Every listing from <strong>35+ sources</strong> — LandWatch, Lands of America, Zillow, Realtor, Craigslist, Facebook, HUD, Fannie Mae, USDA, BLM, Auction.com, county tax sales, FarmFlip, LoopNet and more.</p>
-  <div id="email-section">
-    <div class="email-row">
-      <input class="email-input" id="email-input" type="email" placeholder="Enter your email for early access…"/>
-      <button class="btn-cta" onclick="submitEmail()">Get Early Access</button>
+  <div class="live-badge"><span class="live-dot"></span> LIVE · <span id="waitlist-count">247</span> active buyers</div>
+
+  <h1>Find Every Piece of<br/><span>Land for Sale.</span><br/>All in One Search.</h1>
+
+  <p>35+ sources. One ZIP code. Instant results from LandWatch, Zillow, HUD, Auctions, FSBO, County Tax Sales & more — powered by AI.</p>
+
+  <!-- 14-Day Trial Box -->
+  <div class="trial-box">
+    <div class="trial-badge">🎉 14-Day Free Trial — No Credit Card</div>
+    <div id="trial-form" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px">
+      <input id="trial-email" type="email" placeholder="Enter your email…" class="email-input"/>
+      <button onclick="startTrial()" class="btn-cta">Start Free Trial →</button>
     </div>
+    <div id="trial-success" style="display:none;text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">🎉</div>
+      <div style="font-family:'Cinzel',serif;font-size:16px;color:#7ac040;font-weight:700;margin-bottom:6px">Trial Started!</div>
+      <button onclick="showApp()" class="btn-cta" style="margin-top:8px">Launch App Now →</button>
+    </div>
+    <div class="trial-perks">✓ Full Pro access &nbsp;·&nbsp; ✓ All 35+ sources &nbsp;·&nbsp; ✓ Cancel anytime</div>
   </div>
-  <div id="success-section" class="hidden">
-    <div class="success-box">✅ You're on the list!</div>
-  </div>
-  <div class="no-spam">No credit card. No spam.</div>
-  <button class="btn-try" onclick="showApp()">🔍 Try the Live Agent Now →</button>
+
+  <button class="btn-ghost" onclick="showApp()" style="margin-top:16px">Try without signing up →</button>
 </div>
 
+<!-- Scrolling source strip -->
 <div class="source-strip">
   <div class="source-scroll">
-    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● LandSearch</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Trulia</span><span class="source-item">● Homes.com</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● ByOwner.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● Hubzu</span><span class="source-item">● Ten-X</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● Foreclosure.com</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● RealAuction</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● FarmlandFinder</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
-    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● LandSearch</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Trulia</span><span class="source-item">● Homes.com</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● ByOwner.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● Hubzu</span><span class="source-item">● Ten-X</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● Foreclosure.com</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● RealAuction</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● FarmlandFinder</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
+    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
+    <span class="source-item">● LandWatch</span><span class="source-item">● Lands of America</span><span class="source-item">● LandFlip</span><span class="source-item">● Zillow</span><span class="source-item">● Realtor.com</span><span class="source-item">● Redfin</span><span class="source-item">● Craigslist</span><span class="source-item">● Facebook Marketplace</span><span class="source-item">● FSBO.com</span><span class="source-item">● Auction.com</span><span class="source-item">● Bid4Assets</span><span class="source-item">● HUD / Gov</span><span class="source-item">● Fannie Mae</span><span class="source-item">● USDA</span><span class="source-item">● BLM Land</span><span class="source-item">● RealtyTrac</span><span class="source-item">● County/Probate</span><span class="source-item">● Tax Sale Resources</span><span class="source-item">● FarmFlip</span><span class="source-item">● AcreTrader</span><span class="source-item">● LoopNet</span><span class="source-item">● CoStar</span><span class="source-item">● Crexi</span>
   </div>
 </div>
 
-<div class="features">
-  <h2>Everything land buyers need.</h2>
-  <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon">🌾</div><div class="feature-title">Land Specialists</div><div class="feature-desc">LandWatch, Lands of America, LandFlip, LandSearch — dedicated land-only platforms.</div></div>
-    <div class="feature-card"><div class="feature-icon">🏠</div><div class="feature-title">MLS Portals</div><div class="feature-desc">Zillow, Realtor.com, Redfin, Trulia, Homes.com — all major MLS aggregators.</div></div>
-    <div class="feature-card"><div class="feature-icon">🤝</div><div class="feature-title">FSBO & By Owner</div><div class="feature-desc">FSBO.com, ByOwner.com, ForSaleByOwner — direct from seller, no agent fees.</div></div>
-    <div class="feature-card"><div class="feature-icon">🔨</div><div class="feature-title">Auctions</div><div class="feature-desc">Auction.com, Bid4Assets, Hubzu, Ten-X, GovPlanet — live and online auctions.</div></div>
-    <div class="feature-card"><div class="feature-icon">🏛️</div><div class="feature-title">Government Sources</div><div class="feature-desc">HUD, Fannie Mae, USDA, BLM, Freddie Mac — federal and agency-owned land.</div></div>
-    <div class="feature-card"><div class="feature-icon">⚖️</div><div class="feature-title">Foreclosures & REO</div><div class="feature-desc">RealtyTrac, Foreclosure.com — pre-foreclosure, bank-owned, sheriff sales.</div></div>
-    <div class="feature-card"><div class="feature-icon">🗺️</div><div class="feature-title">County & Tax Sales</div><div class="feature-desc">County/Probate, Tax Sale Resources, SRI, RealAuction — tax lien and deed sales.</div></div>
-    <div class="feature-card"><div class="feature-icon">🚜</div><div class="feature-title">Farm, Ranch & Commercial</div><div class="feature-desc">FarmFlip, AcreTrader, FarmlandFinder, LoopNet, CoStar, Crexi — specialized markets.</div></div>
-  </div>
-</div>
-
+<!-- Stats bar -->
 <div class="stats">
   <div class="stats-grid">
     <div><div class="stat-num">35+</div><div class="stat-label">Sources</div></div>
@@ -239,36 +253,82 @@ a{text-decoration:none}
   </div>
 </div>
 
-<div class="pricing">
-  <h2>Simple pricing.</h2>
+<!-- 3-step how it works -->
+<div class="section-wrap">
+  <div class="section-label">HOW IT WORKS</div>
+  <h2 class="section-title">Find land in 3 steps.</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Enter Your ZIP</div>
+      <div class="step-desc">Pick any ZIP code and search radius — 10 to 500 miles.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">AI Scans 35+ Sources</div>
+      <div class="step-desc">LandWatch, Zillow, HUD, auctions, FSBO, county tax sales — all at once.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Filter & Ask AI</div>
+      <div class="step-desc">Filter by sale type, land type, price. Ask the AI advisor anything.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 source categories -->
+<div class="section-wrap" style="background:#0a140a;border-top:1px solid #1a2a1a;border-bottom:1px solid #1a2a1a;max-width:100%">
+  <div style="max-width:920px;margin:0 auto;padding:0 20px">
+    <div class="section-label">35+ SOURCES ACROSS 8 CATEGORIES</div>
+    <h2 class="section-title">Every listing. Everywhere.</h2>
+    <div class="cat-grid">
+      <div class="cat-card"><span class="cat-icon">🌾</span><div class="cat-name">Land Specialists</div><div class="cat-list">LandWatch · Lands of America · LandFlip · LandSearch</div></div>
+      <div class="cat-card"><span class="cat-icon">🏠</span><div class="cat-name">MLS Portals</div><div class="cat-list">Zillow · Realtor.com · Redfin · Trulia · Homes.com</div></div>
+      <div class="cat-card"><span class="cat-icon">🤝</span><div class="cat-name">FSBO & By Owner</div><div class="cat-list">FSBO.com · ByOwner.com · ForSaleByOwner</div></div>
+      <div class="cat-card"><span class="cat-icon">🔨</span><div class="cat-name">Auctions</div><div class="cat-list">Auction.com · Bid4Assets · Hubzu · Ten-X · GovPlanet</div></div>
+      <div class="cat-card"><span class="cat-icon">🏛️</span><div class="cat-name">Government</div><div class="cat-list">HUD · Fannie Mae · USDA · BLM · Freddie Mac</div></div>
+      <div class="cat-card"><span class="cat-icon">⚖️</span><div class="cat-name">Foreclosures</div><div class="cat-list">RealtyTrac · Foreclosure.com · HomePath</div></div>
+      <div class="cat-card"><span class="cat-icon">🗺️</span><div class="cat-name">County & Tax Sales</div><div class="cat-list">County/Probate · Tax Sale Resources · SRI · RealAuction</div></div>
+      <div class="cat-card"><span class="cat-icon">🚜</span><div class="cat-name">Farm & Commercial</div><div class="cat-list">FarmFlip · AcreTrader · FarmlandFinder · LoopNet · CoStar · Crexi</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="section-wrap">
+  <div class="section-label">PRICING</div>
+  <h2 class="section-title">Start free. No credit card.</h2>
+  <div class="trial-note">All paid plans include a <strong style="color:#7ac040">14-day free trial</strong></div>
   <div class="pricing-grid">
     <div class="plan">
       <div class="plan-name" style="color:#4a6a4a">Free</div>
-      <div class="plan-price">$0</div><div class="plan-period">/mo</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:16px"><span class="plan-price">$0</span><span class="plan-period">/mo</span></div>
       <div class="plan-features">
         <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 3 searches/day</div>
         <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 25 mile radius</div>
         <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> 5 sources</div>
         <div class="plan-feature"><span class="check" style="color:#4a6a4a">✓</span> Basic filters</div>
       </div>
-      <button class="btn-plan" style="color:#4a6a4a;border-color:#2a4a2a" onclick="showApp()">Start Free →</button>
+      <button class="btn-plan" style="color:#4a6a4a;border-color:#2a4a2a" onclick="showApp()">Start Free</button>
     </div>
     <div class="plan popular">
       <div class="popular-badge">MOST POPULAR</div>
       <div class="plan-name" style="color:#7ac040">Pro</div>
-      <div class="plan-price">$19</div><div class="plan-period">/mo</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:4px"><span class="plan-price">$19</span><span class="plan-period">/mo</span></div>
+      <div class="trial-chip">14-day free trial</div>
       <div class="plan-features">
         <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> Unlimited searches</div>
         <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> 500 mile radius</div>
-        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> All 10 sources</div>
+        <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> All 35+ sources</div>
         <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> AI chat advisor</div>
         <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> Email alerts</div>
       </div>
-      <a href="https://buy.stripe.com/eVq9AU4kph0FcBl5lj77O00" target="_blank"><button class="btn-plan" style="color:#e0f8c0;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-color:#5a9a2a">Get Pro →</button></a>
+      <a href="https://buy.stripe.com/eVq9AU4kph0FcBl5lj77O00" target="_blank"><button class="btn-plan" style="color:#e0f8c0;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-color:#5a9a2a">Try Free 14 Days →</button></a>
     </div>
     <div class="plan">
       <div class="plan-name" style="color:#a0d060">Investor</div>
-      <div class="plan-price">$49</div><div class="plan-period">/mo</div>
+      <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:4px"><span class="plan-price">$49</span><span class="plan-period">/mo</span></div>
+      <div class="trial-chip">14-day free trial</div>
       <div class="plan-features">
         <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> Everything in Pro</div>
         <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> CSV export</div>
@@ -276,57 +336,79 @@ a{text-decoration:none}
         <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> Portfolio tracker</div>
         <div class="plan-feature"><span class="check" style="color:#a0d060">✓</span> API access</div>
       </div>
-      <a href="https://buy.stripe.com/cNi28sg377q5eJt3db77O01" target="_blank"><button class="btn-plan" style="color:#a0d060;border-color:#5a8a2a">Get Investor →</button></a>
+      <a href="https://buy.stripe.com/cNi28sg377q5eJt3db77O01" target="_blank"><button class="btn-plan" style="color:#a0d060;border-color:#5a8a2a">Try Free 14 Days →</button></a>
     </div>
   </div>
 </div>
 
-<!-- LIST WITH US SECTION -->
-<div id="list-section" style="max-width:960px;margin:0 auto 80px;padding:0 20px">
-  <div style="text-align:center;margin-bottom:40px">
-    <div style="display:inline-flex;align-items:center;gap:8px;background:#3a1a0a;border:1px solid #6a3a1a;border-radius:20px;padding:5px 14px;font-size:11px;color:#d4a847;margin-bottom:16px;letter-spacing:.06em">🌾 FOR SELLERS</div>
-    <div style="font-family:'Cinzel',serif;font-size:clamp(22px,4vw,40px);font-weight:900;color:#e8f4e0;margin-bottom:10px">List Your Land With Us</div>
-    <div style="font-size:14px;color:#7a9a7a;max-width:540px;margin:0 auto;line-height:1.8">Get your land in front of thousands of active buyers. Choose your featured placement, set your price, and go live in minutes.</div>
-  </div>
-
-  <!-- Featured Plans -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px">
-    <div style="background:#0f180f;border:2px solid #1e3a1e;border-radius:14px;padding:22px 18px;text-align:center">
-      <div style="font-size:28px;margin-bottom:8px">📋</div>
-      <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#7a9a7a;margin-bottom:4px">Basic</div>
-      <div style="font-family:'Cinzel',serif;font-size:30px;font-weight:900;color:#e8f4e0">$29</div>
-      <div style="font-size:11px;color:#4a6a4a;margin-bottom:14px">/30 days</div>
-      <div style="font-size:12px;color:#5a7a5a;line-height:1.8;margin-bottom:16px;text-align:left">
-        ✓ Standard listing<br/>✓ Up to 5 photos<br/>✓ Contact form<br/>✓ 30-day exposure
+<!-- List With Us -->
+<div class="section-wrap" style="background:#0a0e06;border-top:1px solid #1a2a0a;border-bottom:1px solid #1a2a0a;max-width:100%">
+  <div style="max-width:920px;margin:0 auto;padding:0 20px">
+    <div class="section-label" style="color:#d4a847">FOR SELLERS</div>
+    <h2 class="section-title">List Your Land With Us</h2>
+    <p style="text-align:center;color:#5a7a5a;font-size:14px;max-width:500px;margin:0 auto 36px;line-height:1.8">Reach thousands of active land buyers. Choose your plan, upload photos, and go live in minutes. <strong style="color:#d4a847">14-day free listing</strong> included.</p>
+    <div class="pricing-grid">
+      <div class="plan" style="text-align:center">
+        <div style="font-size:24px;margin-bottom:8px">📋</div>
+        <div class="plan-name" style="color:#7a9a7a">Basic</div>
+        <div style="display:flex;align-items:baseline;gap:4px;justify-content:center;margin-bottom:16px"><span class="plan-price">$29</span><span class="plan-period">/30 days</span></div>
+        <div class="plan-features" style="text-align:left">
+          <div class="plan-feature"><span class="check" style="color:#5a7a5a">✓</span> Standard listing</div>
+          <div class="plan-feature"><span class="check" style="color:#5a7a5a">✓</span> Up to 5 photos</div>
+          <div class="plan-feature"><span class="check" style="color:#5a7a5a">✓</span> Contact form</div>
+          <div class="plan-feature"><span class="check" style="color:#5a7a5a">✓</span> 14-day free trial</div>
+        </div>
+        <button onclick="showListingForm('basic',29)" class="btn-plan" style="color:#7a9a7a;border-color:#3a5a3a;width:100%">List Now →</button>
       </div>
-      <button onclick="showListingForm('basic',29)" style="width:100%;padding:10px;background:transparent;border:1px solid #3a5a3a;border-radius:8px;color:#7a9a7a;font-weight:700;font-size:12px;cursor:pointer;font-family:'Cinzel',serif">List Now →</button>
-    </div>
-
-    <div style="background:linear-gradient(135deg,#1a2e0a,#0f200a);border:2px solid #5a9a2a;border-radius:14px;padding:22px 18px;text-align:center;position:relative">
-      <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#d4a847,#a07820);border-radius:20px;padding:2px 12px;font-size:9px;font-weight:800;color:#fff8e0;white-space:nowrap;font-family:'Cinzel',serif;letter-spacing:1px">⭐ FEATURED</div>
-      <div style="font-size:28px;margin-bottom:8px">🌟</div>
-      <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#7ac040;margin-bottom:4px">Featured</div>
-      <div style="font-family:'Cinzel',serif;font-size:30px;font-weight:900;color:#e8f4e0">$79</div>
-      <div style="font-size:11px;color:#4a6a4a;margin-bottom:14px">/30 days</div>
-      <div style="font-size:12px;color:#7a9a7a;line-height:1.8;margin-bottom:16px;text-align:left">
-        ✓ Featured placement<br/>✓ Up to 20 photos<br/>✓ Photo editing tools<br/>✓ Top of search results<br/>✓ AI listing description<br/>✓ 30-day exposure
+      <div class="plan popular" style="text-align:center">
+        <div class="popular-badge" style="background:linear-gradient(135deg,#d4a847,#a07820)">⭐ FEATURED</div>
+        <div style="font-size:24px;margin-bottom:8px">🌟</div>
+        <div class="plan-name" style="color:#7ac040">Featured</div>
+        <div style="display:flex;align-items:baseline;gap:4px;justify-content:center;margin-bottom:16px"><span class="plan-price">$79</span><span class="plan-period">/30 days</span></div>
+        <div class="plan-features" style="text-align:left">
+          <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> Top placement</div>
+          <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> 20 photos + editor</div>
+          <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> AI description</div>
+          <div class="plan-feature"><span class="check" style="color:#7ac040">✓</span> 14-day free trial</div>
+        </div>
+        <button onclick="showListingForm('featured',79)" class="btn-plan" style="color:#e0f8c0;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border-color:#5a9a2a;width:100%">List Featured →</button>
       </div>
-      <button onclick="showListingForm('featured',79)" style="width:100%;padding:10px;background:linear-gradient(135deg,#5a9a2a,#3a7a1a);border:none;border-radius:8px;color:#e0f8c0;font-weight:700;font-size:12px;cursor:pointer;font-family:'Cinzel',serif">List Featured →</button>
-    </div>
-
-    <div style="background:#120a0a;border:2px solid #5a2a0a;border-radius:14px;padding:22px 18px;text-align:center;position:relative">
-      <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#d4a847,#b8860b);border-radius:20px;padding:2px 12px;font-size:9px;font-weight:800;color:#fff8e0;white-space:nowrap;font-family:'Cinzel',serif;letter-spacing:1px">👑 PREMIUM</div>
-      <div style="font-size:28px;margin-bottom:8px">👑</div>
-      <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#d4a847;margin-bottom:4px">Premium</div>
-      <div style="font-family:'Cinzel',serif;font-size:30px;font-weight:900;color:#e8f4e0">$149</div>
-      <div style="font-size:11px;color:#4a6a4a;margin-bottom:14px">/30 days</div>
-      <div style="font-size:12px;color:#9a8a6a;line-height:1.8;margin-bottom:16px;text-align:left">
-        ✓ Homepage spotlight<br/>✓ Unlimited photos<br/>✓ Full photo editing suite<br/>✓ Video upload<br/>✓ AI listing optimization<br/>✓ Social media blast<br/>✓ 60-day exposure<br/>✓ Priority support
+      <div class="plan" style="text-align:center;border-color:#5a3a0a">
+        <div class="popular-badge" style="background:linear-gradient(135deg,#d4a847,#b8860b)">👑 PREMIUM</div>
+        <div style="font-size:24px;margin-bottom:8px">👑</div>
+        <div class="plan-name" style="color:#d4a847">Premium</div>
+        <div style="display:flex;align-items:baseline;gap:4px;justify-content:center;margin-bottom:16px"><span class="plan-price">$149</span><span class="plan-period">/60 days</span></div>
+        <div class="plan-features" style="text-align:left">
+          <div class="plan-feature"><span class="check" style="color:#d4a847">✓</span> Homepage spotlight</div>
+          <div class="plan-feature"><span class="check" style="color:#d4a847">✓</span> Unlimited photos</div>
+          <div class="plan-feature"><span class="check" style="color:#d4a847">✓</span> Video upload</div>
+          <div class="plan-feature"><span class="check" style="color:#d4a847">✓</span> Social media blast</div>
+          <div class="plan-feature"><span class="check" style="color:#d4a847">✓</span> 14-day free trial</div>
+        </div>
+        <button onclick="showListingForm('premium',149)" class="btn-plan" style="color:#fff8e0;background:linear-gradient(135deg,#d4a847,#a07820);border-color:#d4a847;width:100%">List Premium →</button>
       </div>
-      <button onclick="showListingForm('premium',149)" style="width:100%;padding:10px;background:linear-gradient(135deg,#d4a847,#a07820);border:none;border-radius:8px;color:#fff8e0;font-weight:700;font-size:12px;cursor:pointer;font-family:'Cinzel',serif">List Premium →</button>
     </div>
   </div>
 </div>
+
+<!-- Final CTA -->
+<div class="section-wrap" style="text-align:center;padding:60px 20px">
+  <h2 class="section-title">Start your 14-day free trial.</h2>
+  <p style="color:#4a6a4a;font-size:14px;margin-bottom:28px">No credit card. Full Pro access. Cancel anytime.</p>
+  <button onclick="showApp()" class="btn-cta" style="padding:16px 44px;font-size:16px;font-family:'Cinzel',serif;letter-spacing:2px">🚀 Start Free Trial</button>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <svg viewBox="0 0 480 160" width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="fa" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c8f070"/><stop offset="100%" stop-color="#4a8a1a"/></linearGradient><radialGradient id="fbg" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a3a0a"/><stop offset="100%" stop-color="#0a1508"/></radialGradient><filter id="fg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="480" height="160" rx="20" fill="url(#fbg)"/>
+    <text x="240" y="88" font-family="'Cinzel',serif" font-size="34" font-weight="400" fill="url(#fa)" filter="url(#fg)" text-anchor="middle" letter-spacing="14">PURELY</text>
+    <text x="240" y="118" font-family="'Cinzel',serif" font-size="42" font-weight="900" fill="#f0ead8" text-anchor="middle" letter-spacing="18">LAND</text>
+  </svg>
+  <div class="footer-copy">© 2025 PurelyLand.ai · Land. Lots. Intelligence.</div>
+</div>
+
 
 <!-- LISTING FORM MODAL -->
 <div id="listing-modal" style="display:none;position:fixed;inset:0;background:#000c;z-index:200;overflow-y:auto;padding:20px">
@@ -691,7 +773,8 @@ if(heroP)SOURCES.forEach(s=>{const el=document.createElement('span');el.style.cs
 
 function showApp(){document.getElementById('landing').style.display='none';document.getElementById('app').style.display='block';document.getElementById('sell-page')&&(document.getElementById('sell-page').style.display='none');window.scrollTo(0,0);}
 function showLanding(){document.getElementById('landing').style.display='block';document.getElementById('app').style.display='none';document.getElementById('sell-page')&&(document.getElementById('sell-page').style.display='none');window.scrollTo(0,0);}
-function submitEmail(){const e=document.getElementById('email-input');if(!e||!e.value.includes('@'))return;document.getElementById('email-section').style.display='none';document.getElementById('success-section').classList.remove('hidden');}
+function startTrial(){const e=document.getElementById('trial-email');if(!e||!e.value.includes('@')){alert('Please enter a valid email.');return;}document.getElementById('trial-form').style.display='none';document.getElementById('trial-success').style.display='block';}
+function submitEmail(){startTrial();}
 
 function showListingForm(plan,price){
   currentPlan=plan;currentPlanPrice=price;
